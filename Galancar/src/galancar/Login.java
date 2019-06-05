@@ -22,7 +22,7 @@ public class Login extends JFrame {
 	private JPasswordField passwordFieldContrasena;
 
 	/**
-	 * Launch the application. ME FUCKING GUSTA DAW dfgdfgdfgdfgdf HSDHFSDUFHSDUFHSDIUFHSDFUSDHFSUDFGHSIDUYF
+	 * Launch the application. ME FUCKING GUSTA DAW 
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
