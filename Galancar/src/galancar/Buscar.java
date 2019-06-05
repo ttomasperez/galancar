@@ -127,6 +127,12 @@ public class Buscar extends JFrame {
 		btnConsulta.setFont(new Font("Arial", Font.BOLD, 14));
 		btnConsulta.setBounds(272, 160, 97, 25);
 		contentPane.add(btnConsulta);
+		
+		JLabel label = new JLabel("");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setIcon(new ImageIcon(Buscar.class.getResource("/imageresources/consultoria-integral.png")));
+		label.setBounds(0, 199, 634, 220);
+		contentPane.add(label);
 		//
 
 	}
