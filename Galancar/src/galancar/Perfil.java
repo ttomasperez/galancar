@@ -45,18 +45,18 @@ public class Perfil extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Publicar");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnPublicar = new JButton("Publicar");
+		btnPublicar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Publicar publicar = new Publicar(); 
 				publicar.setVisible(true); 
 				dispose();
 			}
 		});
-		btnNewButton.setIcon(new ImageIcon(Home.class.getResource("/imageresources/buscar35.png")));
-		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton.setBounds(0, 0, 137, 38);
-		contentPane.add(btnNewButton);
+		btnPublicar.setIcon(new ImageIcon(Home.class.getResource("/imageresources/buscar35.png")));
+		btnPublicar.setFont(new Font("Arial", Font.BOLD, 14));
+		btnPublicar.setBounds(0, 0, 137, 38);
+		contentPane.add(btnPublicar);
 		
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
@@ -84,17 +84,17 @@ public class Perfil extends JFrame {
 		btnInicio.setBounds(495, 0, 137, 38);
 		contentPane.add(btnInicio);
 		
-		JButton button_2 = new JButton("");
-		button_2.addActionListener(new ActionListener() {
+		JButton btnGalancar = new JButton("");
+		btnGalancar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Home home = new Home(); 
 				home.setVisible(true); 
 				dispose();
 			}
 		});
-		button_2.setIcon(new ImageIcon(Perfil.class.getResource("/imageresources/nombreblancosmall220.png")));
-		button_2.setBounds(272, 0, 224, 38);
-		contentPane.add(button_2);
+		btnGalancar.setIcon(new ImageIcon(Perfil.class.getResource("/imageresources/nombreblancosmall220.png")));
+		btnGalancar.setBounds(272, 0, 224, 38);
+		contentPane.add(btnGalancar);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Perfil.class.getResource("/imageresources/logosmall75.png")));
