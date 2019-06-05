@@ -16,6 +16,8 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Registro extends JFrame {
 
@@ -178,6 +180,13 @@ public class Registro extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Volver");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Login login = new Login(); 
+				login.setVisible(true); 
+				dispose();
+			}
+		});
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 14));
 		btnNewButton_1.setBounds(136, 335, 116, 23);
 		contentPane.add(btnNewButton_1);
