@@ -84,7 +84,7 @@ public class Perfil extends JFrame {
 		btnInicio.setBounds(495, 0, 137, 38);
 		contentPane.add(btnInicio);
 		
-		JButton button_2 = new JButton("Inicio");
+		JButton button_2 = new JButton("");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Home home = new Home(); 

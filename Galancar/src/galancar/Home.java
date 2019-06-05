@@ -84,7 +84,7 @@ public class Home extends JFrame {
 		btnInicio.setBounds(495, 0, 137, 38);
 		contentPane.add(btnInicio);
 		
-		JButton button_2 = new JButton("Inicio");
+		JButton button_2 = new JButton("");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Home home = new Home(); 
@@ -92,13 +92,18 @@ public class Home extends JFrame {
 				dispose();
 			}
 		});
-		button_2.setIcon(new ImageIcon(Home.class.getResource("/imageresources/nombreblancosmall220.png")));
+		button_2.setIcon(new ImageIcon(Home.class.getResource("/imageresources/logosmall60.png")));
 		button_2.setBounds(272, 0, 224, 38);
 		contentPane.add(button_2);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Home.class.getResource("/imageresources/logosmall75.png")));
-		lblNewLabel.setBounds(557, 395, 75, 58);
+		lblNewLabel.setBounds(0, 395, 75, 58);
 		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(Home.class.getResource("/imageresources/imagenfondo.png")));
+		lblNewLabel_1.setBounds(0, 36, 632, 417);
+		contentPane.add(lblNewLabel_1);
 	}
 }
