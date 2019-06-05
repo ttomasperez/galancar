@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
+import com.toedter.calendar.JDateChooser;
+import javax.swing.JButton;
 
 public class Registro extends JFrame {
 
@@ -158,11 +160,29 @@ public class Registro extends JFrame {
 		lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setIcon(new ImageIcon(Registro.class.getResource("/imageresources/nombreblancosmall300.png")));
-		lblNewLabel_2.setBounds(0, 369, 632, 35);
+		lblNewLabel_2.setBounds(0, 369, 595, 44);
 		contentPane.add(lblNewLabel_2);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(348, 66, 116, 22);
+		contentPane.add(dateChooser);
+		
+		JLabel lblFecha = new JLabel("FECHA");
+		lblFecha.setFont(new Font("Arial", Font.PLAIN, 16));
+		lblFecha.setBounds(476, 71, 89, 16);
+		contentPane.add(lblFecha);
+		
+		JButton btnNewButton = new JButton("Comenzar");
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNewButton.setBounds(348, 335, 116, 23);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Volver");
+		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNewButton_1.setBounds(136, 335, 116, 23);
+		contentPane.add(btnNewButton_1);
 		
 		
 		
 	}
-
 }
