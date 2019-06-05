@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Home extends JFrame {
+public class Perfil extends JFrame {
 
 	private JPanel contentPane;
 
@@ -25,7 +25,7 @@ public class Home extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Home frame = new Home();
+					Perfil frame = new Perfil();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class Home extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Home() {
+	public Perfil() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 300, 650, 500);
 		contentPane = new JPanel();
@@ -66,7 +66,7 @@ public class Home extends JFrame {
 				dispose();
 			}
 		});
-		btnBuscar.setIcon(new ImageIcon(Home.class.getResource("/imageresources/lupa30.png")));
+		btnBuscar.setIcon(new ImageIcon(Perfil.class.getResource("/imageresources/lupa30.png")));
 		btnBuscar.setFont(new Font("Arial", Font.BOLD, 13));
 		btnBuscar.setBounds(137, 0, 137, 38);
 		contentPane.add(btnBuscar);
@@ -80,7 +80,7 @@ public class Home extends JFrame {
 			}
 		});
 		btnInicio.setFont(new Font("Arial", Font.BOLD, 13));
-		btnInicio.setIcon(new ImageIcon(Home.class.getResource("/imageresources/perfil30.png")));
+		btnInicio.setIcon(new ImageIcon(Perfil.class.getResource("/imageresources/perfil30.png")));
 		btnInicio.setBounds(495, 0, 137, 38);
 		contentPane.add(btnInicio);
 		
@@ -92,12 +92,12 @@ public class Home extends JFrame {
 				dispose();
 			}
 		});
-		button_2.setIcon(new ImageIcon(Home.class.getResource("/imageresources/nombreblancosmall220.png")));
+		button_2.setIcon(new ImageIcon(Perfil.class.getResource("/imageresources/nombreblancosmall220.png")));
 		button_2.setBounds(272, 0, 224, 38);
 		contentPane.add(button_2);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(Home.class.getResource("/imageresources/logosmall75.png")));
+		lblNewLabel.setIcon(new ImageIcon(Perfil.class.getResource("/imageresources/logosmall75.png")));
 		lblNewLabel.setBounds(557, 395, 75, 58);
 		contentPane.add(lblNewLabel);
 	}
