@@ -155,5 +155,7 @@ public class Buscar extends JFrame {
 		lblenQuNumero.setFont(new Font("Arial", Font.BOLD, 14));
 		lblenQuNumero.setBounds(159, 146, 329, 14);
 		contentPane.add(lblenQuNumero);
+		//
+
 	}
 }
