@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JLabel;
 
 public class Home extends JFrame {
 
@@ -49,18 +51,24 @@ public class Home extends JFrame {
 		
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.setIcon(new ImageIcon(Home.class.getResource("/imageresources/lupa30.png")));
-		btnBuscar.setFont(new Font("Arial", Font.BOLD, 14));
+		btnBuscar.setFont(new Font("Arial", Font.BOLD, 13));
 		btnBuscar.setBounds(137, 0, 137, 38);
 		contentPane.add(btnBuscar);
 		
-		JButton btnInicio = new JButton("Inicio");
-		btnInicio.setFont(new Font("Arial", Font.BOLD, 14));
+		JButton btnInicio = new JButton("Perfil");
+		btnInicio.setFont(new Font("Arial", Font.BOLD, 13));
 		btnInicio.setIcon(new ImageIcon(Home.class.getResource("/imageresources/perfil30.png")));
 		btnInicio.setBounds(495, 0, 137, 38);
 		contentPane.add(btnInicio);
 		
-		JButton button_2 = new JButton("New button");
+		JButton button_2 = new JButton("");
+		button_2.setIcon(new ImageIcon(Home.class.getResource("/imageresources/nombreblancosmall220.png")));
 		button_2.setBounds(272, 0, 224, 38);
 		contentPane.add(button_2);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Home.class.getResource("/imageresources/logosmall75.png")));
+		lblNewLabel.setBounds(557, 395, 75, 58);
+		contentPane.add(lblNewLabel);
 	}
 }
