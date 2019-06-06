@@ -137,8 +137,8 @@ public class Buscar extends JFrame {
 		
 		JLabel label = new JLabel("");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setIcon(new ImageIcon(Buscar.class.getResource("/imageresources/consultoria-integral.png")));
-		label.setBounds(0, 199, 634, 220);
+		label.setIcon(new ImageIcon(Buscar.class.getResource("/imageresources/lupa200.png")));
+		label.setBounds(0, 199, 620, 220);
 		contentPane.add(label);
 		//
 

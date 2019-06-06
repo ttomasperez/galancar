@@ -98,6 +98,8 @@ public class Datos_Viajes extends JFrame {
 		JButton btnUnirse = new JButton("Unirse");
 		btnUnirse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Home home = new Home();
+				home.setVisible(true);
 				Datos_Viajes datos_Viajes = new Datos_Viajes(); 
 				datos_Viajes.setVisible(false); 
 				dispose();
