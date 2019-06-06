@@ -68,7 +68,7 @@ public class Home extends JFrame {
 		});
 		btnBuscar.setIcon(new ImageIcon(Home.class.getResource("/imageresources/lupa30.png")));
 		btnBuscar.setFont(new Font("Arial", Font.BOLD, 13));
-		btnBuscar.setBounds(137, 0, 137, 38);
+		btnBuscar.setBounds(131, 0, 137, 38);
 		contentPane.add(btnBuscar);
 		
 		JButton btnInicio = new JButton("Perfil");
@@ -93,7 +93,7 @@ public class Home extends JFrame {
 			}
 		});
 		btnGalancar.setIcon(new ImageIcon(Home.class.getResource("/imageresources/logosmall60.png")));
-		btnGalancar.setBounds(272, 0, 224, 38);
+		btnGalancar.setBounds(266, 0, 230, 38);
 		contentPane.add(btnGalancar);
 		
 		JLabel lblNewLabel = new JLabel("");

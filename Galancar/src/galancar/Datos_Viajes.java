@@ -96,6 +96,13 @@ public class Datos_Viajes extends JFrame {
 		textField.setColumns(10);
 		
 		JButton btnUnirse = new JButton("Unirse");
+		btnUnirse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Datos_Viajes datos_Viajes = new Datos_Viajes(); 
+				datos_Viajes.setVisible(false); 
+				dispose();
+			}
+		});
 		btnUnirse.setFont(new Font("Arial", Font.BOLD, 14));
 		btnUnirse.setBounds(328, 90, 97, 25);
 		contentPane.add(btnUnirse);

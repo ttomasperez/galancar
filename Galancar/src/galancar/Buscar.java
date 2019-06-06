@@ -123,9 +123,16 @@ public class Buscar extends JFrame {
 		lblDestino.setBounds(480, 130, 54, 14);
 		contentPane.add(lblDestino);
 		
-		JButton btnConsulta = new JButton("Buscar");
+		JButton btnConsulta = new JButton("Encontrar viaje");
+		btnConsulta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Datos_Viajes datos_viajes = new Datos_Viajes(); 
+				datos_viajes.setVisible(true); 
+				dispose();
+			}
+		});
 		btnConsulta.setFont(new Font("Arial", Font.BOLD, 14));
-		btnConsulta.setBounds(272, 160, 97, 25);
+		btnConsulta.setBounds(242, 163, 149, 25);
 		contentPane.add(btnConsulta);
 		
 		JLabel label = new JLabel("");
