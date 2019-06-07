@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class Buscar extends JFrame {
 
@@ -106,11 +107,17 @@ public class Buscar extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JComboBox comboBoxOrigen = new JComboBox();
-		comboBoxOrigen.setBounds(319, 127, 149, 20);
+		comboBoxOrigen.setToolTipText("");
+		comboBoxOrigen.setModel(new DefaultComboBoxModel(new String[] {"Elegir una opci\u00F3n...", "Ciudad Real", "Puertollano", "Tomelloso", "Alc\u00E1zar De San Juan", "Valdepe\u00F1as", "La Solana", "Membrilla", "San Carlos Del Valle", "Daimiel", "Miguelturra", "Herencia", "Alhambra", "Almagro", "Sotu\u00E9lamos ", "Malagon", "Pedro Mu\u00F1oz", "Campo de Criptana", "Almad\u00E9n", "Pozo De La Serna", "Argamasilla De Alba"}));
+		comboBoxOrigen.setSelectedIndex(0);
+		comboBoxOrigen.setBounds(158, 127, 149, 20);
 		contentPane.add(comboBoxOrigen);
 		
+		
 		JComboBox comboBoxDestino = new JComboBox();
-		comboBoxDestino.setBounds(158, 127, 149, 20);
+		comboBoxDestino.setModel(new DefaultComboBoxModel(new String[] {"Elegir una opci\u00F3n...", "Ciudad Real", "Puertollano", "Tomelloso", "Alc\u00E1zar De San Juan", "Valdepe\u00F1as", "La Solana", "Membrilla", "San Carlos Del Valle", "Daimiel", "Miguelturra", "Herencia", "Alhambra", "Almagro", "Sotu\u00E9lamos ", "Malagon", "Pedro Mu\u00F1oz", "Campo de Criptana", "Almad\u00E9n", "Pozo De La Serna", "Argamasilla De Alba"}));
+		comboBoxDestino.setSelectedIndex(0);
+		comboBoxDestino.setBounds(319, 127, 149, 20);
 		contentPane.add(comboBoxDestino);
 		
 		JLabel lblOrigen = new JLabel("Origen");
