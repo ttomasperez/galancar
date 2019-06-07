@@ -75,6 +75,12 @@ public class Login extends JFrame {
 		contentPane.add(passwordFieldContrasena);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// FUNCIONES DEL BOTÓN LOGIN
+				
+			}
+		});
 		btnLogin.setFont(new Font("Arial", Font.BOLD, 14));
 		btnLogin.setBounds(203, 267, 97, 25);
 		contentPane.add(btnLogin);
@@ -83,6 +89,7 @@ public class Login extends JFrame {
 		btnRegister.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent arg0) {
+				// FUNCIONES DEL BOTÓN REGISTRO
 				Registro registro = new Registro(); 
 				registro.setVisible(true); 
 				dispose();

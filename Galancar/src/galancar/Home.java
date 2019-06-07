@@ -48,6 +48,7 @@ public class Home extends JFrame {
 		JButton btnPublicar = new JButton("Publicar");
 		btnPublicar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				// FUNCIÓN DEL BOTÓN PUBLICAR
 				Publicar publicar = new Publicar(); 
 				publicar.setVisible(true); 
 				dispose();
@@ -61,6 +62,7 @@ public class Home extends JFrame {
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// FUNCIÓN DEL BOTÓN BUSCAR
 				Buscar buscar = new Buscar(); 
 				buscar.setVisible(true); 
 				dispose();
@@ -74,6 +76,7 @@ public class Home extends JFrame {
 		JButton btnInicio = new JButton("Perfil");
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// FUNCIÓN DEL BOTÓN PERFIL
 				Perfil perfil = new Perfil(); 
 				perfil.setVisible(true); 
 				dispose();
@@ -87,6 +90,7 @@ public class Home extends JFrame {
 		JButton btnGalancar = new JButton("");
 		btnGalancar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// FUNCIÓN DEL BOTÓN HOME, EL CUÁL NOS RECARGARÁ ESTA MISMA PÁGINA
 				Home home = new Home(); 
 				home.setVisible(true); 
 				dispose();

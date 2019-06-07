@@ -175,6 +175,12 @@ public class Registro extends JFrame {
 		contentPane.add(lblFecha);
 		
 		JButton btnNewButton = new JButton("Comenzar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// FUNCIONES DEL BOTÓN COMENZAR
+				
+			}
+		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
 		btnNewButton.setBounds(348, 335, 116, 23);
 		contentPane.add(btnNewButton);
@@ -182,6 +188,7 @@ public class Registro extends JFrame {
 		JButton btnNewButton_1 = new JButton("Volver");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				// FUNCIONES DEL BOTÓN VOLVER
 				Login login = new Login(); 
 				login.setVisible(true); 
 				dispose();

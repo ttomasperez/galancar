@@ -52,7 +52,7 @@ public class Datos_Viajes extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-			
+			// TABLA VISIBLE EN EL JFRAME QUE MUESTRA LOS DATOS DE VIAJES
 			table = new JTable();
 			table.setBounds(58, 13, 498, 160);
 			table.setModel(new DefaultTableModel(
@@ -83,6 +83,7 @@ public class Datos_Viajes extends JFrame {
 		lblNewLabel.setBounds(557, 395, 75, 58);
 		contentPane.add(lblNewLabel);
 		
+		// JLABEL QUE PEDIRÁ AL USUARIO UN NÚMERO IDENTIFICADOR DEL VIAJE EN EL QUE QUIEREN VIAJAR
 		JLabel lblenQuNumero = new JLabel("\u00BFEn qu\u00E9 numero de viaje quieres desplazarte?");
 		lblenQuNumero.setHorizontalAlignment(SwingConstants.CENTER);
 		lblenQuNumero.setFont(new Font("Arial", Font.BOLD, 14));
@@ -98,6 +99,7 @@ public class Datos_Viajes extends JFrame {
 		JButton btnUnirse = new JButton("Unirse");
 		btnUnirse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// FUNCIÓN DEL BOTÓN UNIRSE
 				Home home = new Home();
 				home.setVisible(true);
 				Datos_Viajes datos_Viajes = new Datos_Viajes(); 
