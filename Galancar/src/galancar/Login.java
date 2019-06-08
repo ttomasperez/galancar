@@ -1,105 +1,133 @@
+
+/* 
+ *  PROYECTO GALANCAR.
+ * 	
+ * 	FELIPE PARRA
+ * 	JULIÁN DEL OLMO
+ *  TOMÁS PÉREZ
+ *  
+ * 
+ * */
 package galancar;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+public class Login extends JFrame
+{
+    
+    JLabel l_name,l_pass;
+    JTextField t_name;
+    JPasswordField t_pass;     
+    JButton button;
+    Container c;
 
-public class Login extends JFrame {
+    handler handle;
 
-	private JPanel contentPane;
-	private JTextField textFieldUsuario;
-	private JPasswordField passwordFieldContrasena;
+    ConnectorBBDD db;
+    private JLabel label_1;
+ 
+    Login()
+    {
+    	// NOMBRE DE LA VENTANA
+        super("Galancar");
+ 
+        c=getContentPane();
+ 
+        db=new ConnectorBBDD();
+        handle =new handler();
 
-	/**
-	 * Launch the application. ME FUCKING GUSTA DAW 
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public Login() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(300, 300, 650, 500);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(Login.class.getResource("/imageresources/logo&nombresmall120.png")));
-		label.setBounds(250, 70, 135, 89);
-		contentPane.add(label);
-		
-		JLabel lblUsuario = new JLabel("USUARIO");
-		lblUsuario.setFont(new Font("Arial", Font.BOLD, 17));
-		lblUsuario.setBounds(225, 172, 75, 38);
-		contentPane.add(lblUsuario);
-		
-		JLabel lblContrasea = new JLabel("CONTRASE\u00D1A");
-		lblContrasea.setFont(new Font("Arial", Font.BOLD, 17));
-		lblContrasea.setBounds(185, 224, 115, 30);
-		contentPane.add(lblContrasea);
-		
-		textFieldUsuario = new JTextField();
-		textFieldUsuario.setFont(new Font("Arial", Font.BOLD, 17));
-		textFieldUsuario.setBounds(323, 180, 116, 22);
-		contentPane.add(textFieldUsuario);
-		textFieldUsuario.setColumns(10);
-		
-		passwordFieldContrasena = new JPasswordField();
-		passwordFieldContrasena.setFont(new Font("Arial", Font.BOLD, 17));
-		passwordFieldContrasena.setBounds(323, 228, 116, 22);
-		contentPane.add(passwordFieldContrasena);
-		
-		JButton btnLogin = new JButton("Login");
-		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// FUNCIONES DEL BOTÓN LOGIN
-				
-			}
-		});
-		btnLogin.setFont(new Font("Arial", Font.BOLD, 14));
-		btnLogin.setBounds(203, 267, 97, 25);
-		contentPane.add(btnLogin);
-		
-		JButton btnRegister = new JButton("Register");
-		btnRegister.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent arg0) {
-				// FUNCIONES DEL BOTÓN REGISTRO
-				Registro registro = new Registro(); 
+        l_name=new JLabel("DNI");
+        l_name.setBounds(258, 192, 24, 17);
+        l_name.setFont(new Font("Arial", Font.BOLD, 14));
+        
+        l_pass=new JLabel("Contrase\u00F1a");
+        l_pass.setFont(new Font("Arial", Font.BOLD, 14));
+        l_pass.setBounds(201, 227, 81, 16);
+        
+        t_name=new JTextField(10);
+        t_name.setBounds(304, 189, 158, 22);
+        t_pass=new JPasswordField(10);
+        t_pass.setBounds(304, 224, 158, 22);
+        
+        button=new JButton("Login");
+        button.setFont(new Font("Arial", Font.BOLD, 14));
+        button.setBounds(201, 288, 125, 25);
+ 
+        button.addActionListener(handle);
+        getContentPane().setLayout(null);
+ 
+        c.add(l_name);
+        c.add(t_name);
+        c.add(l_pass);
+        c.add(t_pass);
+        c.add(button);
+        
+        JButton btnNewButton = new JButton("\u00A1Reg\u00EDstrate!");
+        btnNewButton.addActionListener(new ActionListener() {
+        	// BOTÓN DE REGISTRO
+        	public void actionPerformed(ActionEvent arg0) {
+        		Registro registro = new Registro(); 
 				registro.setVisible(true); 
 				dispose();
-			}
-			
-			
-			
-		});
-		btnRegister.setFont(new Font("Arial", Font.BOLD, 14));
-		btnRegister.setBounds(323, 267, 97, 25);
-		contentPane.add(btnRegister);
-	}
+        	}
+        });
+        btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
+        btnNewButton.setBounds(337, 288, 125, 25);
+        getContentPane().add(btnNewButton);
+        
+        //IMAGENES
+        JLabel label = new JLabel("");
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        label.setIcon(new ImageIcon(Login.class.getResource("/imageresources/logosmall65.png")));
+        label.setBounds(239, 95, 158, 84);
+        getContentPane().add(label);
+        
+        label_1 = new JLabel("");
+        label_1.setIcon(new ImageIcon(Login.class.getResource("/imageresources/nombreblancosmall300.png")));
+        label_1.setBounds(182, 342, 292, 54);
+        getContentPane().add(label_1);
+
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(300, 300, 650, 500);
+ 
+    }
+    public static void main(String args[])
+    {
+        Login sample=new Login();
+    }
+
+    class handler implements ActionListener
+    {
+
+        public void actionPerformed(ActionEvent ae)
+        {
+        	// COMPRUEBO SI EL BOTÓN ESTÁ ACCIONADO
+            if(ae.getSource()==button)
+            {
+                char[] temp_pwd=t_pass.getPassword();
+                String pwd=null;
+                pwd=String.copyValueOf(temp_pwd);
+                System.out.println("Username,Pwd:"+t_name.getText()+","+pwd);
+ 
+                // COMPRUEBO CON CHECKLOGIN, LO CUÁL ME DARÁ UN VALOR BOOLEAN. EN CASO DE SER VERDADERO LE DIGO QUE MUESTRE INICIO
+                // AL ESTAR DENTRO DE LA CONDICIÓN IF, NO LE PONGO == TRUE POR QUE SE OBVIA
+                if(db.checkLogin(t_name.getText(), pwd))
+                {
+                	Home home = new Home(); 
+    				home.setVisible(true); 
+    				dispose();
+                }
+                // SI NO ES IGUAL, MUESTRO UN JOPTIONPANE QUE ME ADVIERTA DE QUE ALGO ESTOY HACIENDO MAL
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "DNI o Contraseña incorrecto","Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+ 
+    }
 }
