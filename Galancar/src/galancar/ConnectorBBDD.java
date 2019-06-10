@@ -33,7 +33,7 @@ public class ConnectorBBDD
             rs=pst.executeQuery();
             if(rs.next())
             {
-                //TRUE iff the query founds any corresponding data
+                //TRUE iff the query founds any corresponding datad
                 return true;
             }
             else
