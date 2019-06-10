@@ -19,7 +19,7 @@ public class Login extends JFrame
     
     JLabel l_name,l_pass;
     JTextField t_name;
-    JPasswordField t_pass;     
+    JPasswordField t_pass;     //ffffffff
     JButton button;
     Container c;
 
