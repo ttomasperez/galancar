@@ -9,7 +9,7 @@ public class ConnectorBBDD
     {
         try{
              
-            //MAKE SURE YOU KEEP THE mysql_connector.jar file in java/lib folder
+            //MAKE SURE YOU KEEP THE mysql_conndector.jar file in java/lib folder
             //ALSO SET THE CLASSPATH
             Class.forName("com.mysql.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Galancar","root","");
