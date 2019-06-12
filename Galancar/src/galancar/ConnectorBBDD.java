@@ -11,10 +11,10 @@ public class ConnectorBBDD
     {
         try{
              
-            //MAKE SURE YOU KEEP THE mysql_conndector.jar file in java/lib folder
-            //ALSO SET THE CLASSPATH
-            Class.forName("com.mysql.jc.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Galancar","root","");
+            // CONECTO CON LA BDD
+            Class.forName("com.mysql.jdbc.Driver");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/galancar?user=root&password="
+            		+ "&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
                         pst=con.prepareStatement("select * from usuario where dni_usuario=? and contrasena=?");
                         pst2=con.prepareStatement("insert into usuario values (?,?,?,?,?,?,?,?,?)");
              
@@ -22,21 +22,21 @@ public class ConnectorBBDD
         catch (Exception e) 
         {
             System.out.println(e);
+            e.printStackTrace();
         }
     }
-        //ip:username,password
-        //return boolean
+     
     public Boolean checkLogin(String uname,String pwd)
     {
         try {
                         
-            pst.setString(1, uname); //this replaces the 1st  "?" in the query for username
-            pst.setString(2, pwd);    //this replaces the 2st  "?" in the query for password
-            //executes the prepared statement
+            pst.setString(1, uname); 
+            pst.setString(2, pwd);    
+
             rs=pst.executeQuery();
             if(rs.next())
             {
-                //TRUE iff the query founds any corresponding datad
+                
                 return true;
             }
             else
@@ -45,7 +45,7 @@ public class ConnectorBBDD
             }
         } catch (Exception e) {
             // TODO Auto-generated catch block
-            System.out.println("error while validating"+e);
+            System.out.println(e);
             return false;
         }
 
@@ -82,6 +82,7 @@ public class ConnectorBBDD
         } catch (Exception e) {
             // TODO Auto-generated catch block
             System.out.println(e);
+            e.printStackTrace();
             return false;
         }
 

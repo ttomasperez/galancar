@@ -256,7 +256,7 @@ public class Buscar extends JFrame {
 					ResultSet resultSet = null;
 					// Driver
 					Class.forName("com.mysql.cj.jdbc.Driver");
-					connect = DriverManager.getConnection("jdbc:mysql://localhost:3307/galancar?user=root&password="
+					connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/galancar?user=root&password="
 							+ "&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
 					
 					// Construir una query para SQL con los datos del combobox
