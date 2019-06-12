@@ -1,0 +1,6 @@
+rename table crear_viajes to viajes;
+
+
+alter table viajes modify dni_pasajero varchar(30) null;
+
+alter table viajes drop coche;
