@@ -2,6 +2,7 @@
 create database galancar;
 
 use galancar; 
+drop table pasajero_viaje;
 
 -- Creación de tablas
 -- Tabla usuario
@@ -44,8 +45,9 @@ CREATE TABLE viajes (
 );
 
  CREATE TABLE pasajero_viaje (
-    id_viaje INT(11) PRIMARY KEY NOT NULL,
+    id_viaje INT(11) NOT NULL,
     dni_pasajero VARCHAR(30) NOT NULL,
+    PRIMARY KEY(id_viaje, dni_pasajero),
     FOREIGN KEY (id_viaje)
         REFERENCES viajes (id_viaje)
         ON DELETE CASCADE ON UPDATE CASCADE,
