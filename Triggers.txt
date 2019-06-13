@@ -1,7 +1,0 @@
-CREATE DEFINER=`root`@`localhost` TRIGGER `pasajero_viaje_AFTER_DELETE` AFTER DELETE ON `pasajero_viaje` FOR EACH ROW BEGIN
-	update viajes set plazas_disponibles = plazas_disponibles + 1 where id_viaje=old.id_viaje;
-END
-
-CREATE DEFINER=`root`@`localhost` TRIGGER `pasajero_viaje_AFTER_INSERT` AFTER INSERT ON `pasajero_viaje` FOR EACH ROW BEGIN
-	update viajes set plazas_disponibles = plazas_disponibles - 1 where id_viaje=new.id_viaje;
-END
