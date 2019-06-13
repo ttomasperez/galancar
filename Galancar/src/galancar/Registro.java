@@ -1,3 +1,4 @@
+
 /* 
  *  PROYECTO GALANCAR.
  * 	
@@ -5,6 +6,7 @@
  * 	JULIÁN DEL OLMO
  *  TOMÁS PÉREZ
  *  
+ *  2019
  * 
  * */
 package galancar;
