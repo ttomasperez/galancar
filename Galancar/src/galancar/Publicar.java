@@ -1,168 +1,323 @@
+
+/* 
+ *  PROYECTO GALANCAR.
+ * 	
+ * 	FELIPE PARRA
+ * 	JULIÁN DEL OLMO
+ *  TOMÁS PÉREZ
+ *  
+ * 
+ * */
 package galancar;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
+import java.awt.*;
+import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Component;
 
 public class Publicar extends JFrame {
+	// BOTON Y CONTENEDOR
+	JButton btnAdelante, btnPublicar, btnBuscar, btnInicio, btnGalancar;
+	Container c;
 
-	private JPanel contentPane;
-	private JTextField textFieldNPlazas;
+	JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Buscar frame = new Buscar();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	handler handle;
+	JComboBox c_origen = new JComboBox();
+	JComboBox c_destino = new JComboBox();
+	ConnectorBBDD db;
 
-	/**
-	 * Create the frame.
-	 */
-	public Publicar() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(300, 300, 650, 500);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+	JTextField t_plazas;
+
+	// CONSTRUCTOR
+	Publicar() {
 		
-		JButton btnPublicar = new JButton("Publicar");
-		btnPublicar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				// FUNCIÓN DEL BOTÓN PUBLICAR
-				Publicar publicar = new Publicar(); 
-				publicar.setVisible(true); 
-				dispose();
-			}
-		});
-		btnPublicar.setIcon(new ImageIcon(Buscar.class.getResource("/imageresources/buscar35.png")));
-		btnPublicar.setFont(new Font("Arial", Font.BOLD, 14));
-		btnPublicar.setBounds(0, 0, 137, 38);
-		contentPane.add(btnPublicar);
 		
-		JButton btnBuscar = new JButton("Buscar");
+		
+		// NOMBRE DE LA VENTANA
+		super("Publicar");
+
+		// CONTAINER
+		c = getContentPane();
+
+		db = new ConnectorBBDD();
+		handle = new handler();
+
+		btnAdelante = new JButton("Publicar");
+		btnAdelante.setFont(new Font("Arial", Font.BOLD, 14));
+		btnAdelante.setBounds(237, 209, 158, 25);
+		btnAdelante.addActionListener(handle);
+		getContentPane().setLayout(null);
+		
+		btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// FUNCIÓN DEL BOTÓN BUSCAR
-				Buscar buscar = new Buscar(); 
-				buscar.setVisible(true); 
+				Buscar buscar = new Buscar();
+				buscar.setVisible(true);
 				dispose();
 			}
 		});
-		btnBuscar.setIcon(new ImageIcon(Buscar.class.getResource("/imageresources/lupa30.png")));
+		
+		btnPublicar = new JButton("Publicar");
+		btnPublicar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// FUNCIÓN DEL BOTÓN PUBLICAR
+				Publicar publicar = new Publicar();
+				publicar.setVisible(true);
+				dispose();		
+			}
+		});
+		
+		btnPublicar.setIcon(new ImageIcon(Publicar.class.getResource("/imageresources/buscar35.png")));
+		btnPublicar.setFont(new Font("Arial", Font.BOLD, 14));
+		btnPublicar.setBounds(0, 0, 137, 38);
+		getContentPane().add(btnPublicar);
+		
+		
+		btnBuscar.setIcon(new ImageIcon(Publicar.class.getResource("/imageresources/lupa30.png")));
 		btnBuscar.setFont(new Font("Arial", Font.BOLD, 13));
 		btnBuscar.setBounds(137, 0, 137, 38);
-		contentPane.add(btnBuscar);
+		getContentPane().setLayout(null);
 		
-		JButton btnInicio = new JButton("Perfil");
+		
+		btnInicio = new JButton("Perfil");
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// FUNCIÓN DEL BOTÓN PERFIL
-				Perfil perfil = new Perfil(); 
-				perfil.setVisible(true); 
+				Perfil perfil = new Perfil();
+				perfil.setVisible(true);
 				dispose();
-			}
-		});
-		btnInicio.setFont(new Font("Arial", Font.BOLD, 13));
-		btnInicio.setIcon(new ImageIcon(Buscar.class.getResource("/imageresources/perfil30.png")));
-		btnInicio.setBounds(495, 0, 137, 38);
-		contentPane.add(btnInicio);
-		
-		JButton btnGalancar = new JButton("");
-		btnGalancar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// FUNCIÓN DEL BOTÓN INICIO
-				Home home = new Home(); 
-				home.setVisible(true); 
-				dispose();
-			}
-		});
-		btnGalancar.setIcon(new ImageIcon(Buscar.class.getResource("/imageresources/nombreblancosmall220.png")));
-		btnGalancar.setBounds(272, 0, 224, 38);
-		contentPane.add(btnGalancar);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(Buscar.class.getResource("/imageresources/logosmall75.png")));
-		lblNewLabel.setBounds(557, 395, 75, 58);
-		contentPane.add(lblNewLabel);
-		
-		JComboBox comboBoxOrigen = new JComboBox();
-		comboBoxOrigen.setModel(new DefaultComboBoxModel(new String[] {"Elegir una opci\u00F3n...", "Ciudad Real", "Puertollano", "Tomelloso", "Alc\u00E1zar De San Juan", "Valdepe\u00F1as", "La Solana", "Membrilla", "San Carlos Del Valle", "Daimiel", "Miguelturra", "Herencia", "Alhambra", "Almagro", "Sotu\u00E9lamos ", "Malagon", "Pedro Mu\u00F1oz", "Campo de Criptana", "Almad\u00E9n", "Pozo De La Serna", "Argamasilla De Alba"}));
-		comboBoxOrigen.setSelectedIndex(0);
-		comboBoxOrigen.setBounds(319, 114, 149, 20);
-		contentPane.add(comboBoxOrigen);
-		
-		JComboBox comboBoxDestino = new JComboBox();
-		comboBoxDestino.setModel(new DefaultComboBoxModel(new String[] {"Elegir una opci\u00F3n...", "Ciudad Real", "Puertollano", "Tomelloso", "Alc\u00E1zar De San Juan", "Valdepe\u00F1as", "La Solana", "Membrilla", "San Carlos Del Valle", "Daimiel", "Miguelturra", "Herencia", "Alhambra", "Almagro", "Sotu\u00E9lamos ", "Malagon", "Pedro Mu\u00F1oz", "Campo de Criptana", "Almad\u00E9n", "Pozo De La Serna", "Argamasilla De Alba"}));
-		comboBoxDestino.setSelectedIndex(0);
-		comboBoxDestino.setBounds(158, 114, 149, 20);
-		contentPane.add(comboBoxDestino);
-		
-		JLabel lblOrigen = new JLabel("Origen");
-		lblOrigen.setFont(new Font("Arial", Font.BOLD, 14));
-		lblOrigen.setBounds(91, 117, 54, 14);
-		contentPane.add(lblOrigen);
-		
-		JLabel lblDestino = new JLabel("Destino");
-		lblDestino.setFont(new Font("Arial", Font.BOLD, 14));
-		lblDestino.setBounds(480, 117, 54, 14);
-		contentPane.add(lblDestino);
-		
-		JButton btnIntroduce = new JButton("Publicar viaje");
-		btnIntroduce.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				// FUNCIÓN DEL BOTÓN PUBLICAR VIAJE
 				
 			}
 		});
-		btnIntroduce.setFont(new Font("Arial", Font.BOLD, 14));
-		btnIntroduce.setBounds(246, 198, 149, 25);
-		contentPane.add(btnIntroduce);
+		btnInicio.setFont(new Font("Arial", Font.BOLD, 13));
+		btnInicio.setIcon(new ImageIcon(Publicar.class.getResource("/imageresources/perfil30.png")));
+		btnInicio.setBounds(495, 0, 137, 38);
+		getContentPane().add(btnInicio);
 		
-		textFieldNPlazas = new JTextField();
-		textFieldNPlazas.setFont(new Font("Arial", Font.BOLD, 14));
-		textFieldNPlazas.setBounds(263, 163, 116, 22);
-		contentPane.add(textFieldNPlazas);
-		textFieldNPlazas.setColumns(10);
+		btnGalancar = new JButton("");
+		btnGalancar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// FUNCIÓN DEL BOTÓN INICIO
+				Home home = new Home();
+				home.setVisible(true);
+				dispose();
+			}
+		});
+		btnGalancar.setIcon(new ImageIcon(Publicar.class.getResource("/imageresources/nombreblancosmall220.png")));
+		btnGalancar.setBounds(272, 0, 224, 38);
+		getContentPane().add(btnGalancar);
 		
-		JLabel lblcuntasPlazasLibres = new JLabel("\u00BFCu\u00E1ntas plazas libres tienes?");
+		
+
+		c.add(btnAdelante);
+		c.add(btnBuscar);
+		c.add(btnGalancar);
+		c.add(btnInicio);
+		c.add(btnPublicar);
+
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		label_1.setIcon(new ImageIcon(Publicar.class.getResource("/imageresources/logosmall75.png")));
+		label_1.setBounds(557, 395, 75, 58);
+		getContentPane().add(label_1);
+
+		t_plazas = new JTextField();
+		t_plazas.setBounds(260, 174, 116, 22);
+		getContentPane().add(t_plazas);
+		t_plazas.setColumns(10);
+
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(300, 300, 650, 500);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Publicar.class.getResource("/imageresources/consultoria-integral.png")));
+		lblNewLabel.setBounds(208, 242, 224, 211);
+		getContentPane().add(lblNewLabel);
+		
+		
+		JLabel lbldesdeDndeViajas = new JLabel("\u00BFDESDE D\u00D3NDE VIAJAS?");
+		lbldesdeDndeViajas.setFont(new Font("Arial", Font.BOLD, 14));
+		lbldesdeDndeViajas.setBounds(138, 86, 171, 16);
+		getContentPane().add(lbldesdeDndeViajas);
+		
+		JLabel lblhaciaDndeViajas = new JLabel("\u00BFHACIA D\u00D3NDE VIAJAS?");
+		lblhaciaDndeViajas.setFont(new Font("Arial", Font.BOLD, 14));
+		lblhaciaDndeViajas.setBounds(321, 86, 171, 16);
+		getContentPane().add(lblhaciaDndeViajas);
+		
+		JLabel lblcuntasPlazasLibres = new JLabel("\u00BFCU\u00C1NTAS PLAZAS LIBRES TIENES?");
 		lblcuntasPlazasLibres.setHorizontalAlignment(SwingConstants.CENTER);
 		lblcuntasPlazasLibres.setFont(new Font("Arial", Font.BOLD, 14));
-		lblcuntasPlazasLibres.setBounds(0, 147, 632, 16);
-		contentPane.add(lblcuntasPlazasLibres);
+		lblcuntasPlazasLibres.setBounds(170, 155, 300, 16);
+		getContentPane().add(lblcuntasPlazasLibres);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setIcon(new ImageIcon(Publicar.class.getResource("/imageresources/consultoria-integral.png")));
-		lblNewLabel_1.setBounds(23, 236, 609, 219);
-		contentPane.add(lblNewLabel_1);
-		//
 
+		// CLASE ITEMRENDERER
+		class ItemRenderer extends BasicComboBoxRenderer {
+			@Override
+			public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
+					boolean cellHasFocus) {
+				super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+				if (value != null) {
+					Item item = (Item) value;
+					setText(item.getDescription().toUpperCase());
+				}
+				if (index == -1) {
+					Item item = (Item) value;
+					setText("" + item.getId());
+				}
+				return this;
+			}
+		}// FIN CLASE ITEMRENDERER
+
+		// COMBOBOX ORIGEN
+
+		c_origen.setSize(149, 20);
+		c_origen.setLocation(160, 115);
+		c_origen.setModel(new DefaultComboBoxModel(new String[] {}));
+		c_origen.setEditable(true);
+		c_origen.addItem(new Item(1, "Ciudad Real"));
+		c_origen.addItem(new Item(2, "Puertollano"));
+		c_origen.addItem(new Item(3, "Tomelloso"));
+		c_origen.addItem(new Item(4, "Alcazar De San Juan"));
+		c_origen.addItem(new Item(5, "Valdepñas"));
+		c_origen.addItem(new Item(6, "La Solana"));
+		c_origen.addItem(new Item(7, "Membrilla"));
+		c_origen.addItem(new Item(8, "San Carlos Del Valle"));
+		c_origen.addItem(new Item(9, "Daimiel"));
+		c_origen.addItem(new Item(10, "Miguelturra"));
+		c_origen.addItem(new Item(11, "Herencia"));
+		c_origen.addItem(new Item(12, "Alhambra"));
+		c_origen.addItem(new Item(13, "Almagro"));
+		c_origen.addItem(new Item(14, "Sotuelamos"));
+		c_origen.addItem(new Item(15, "Malagon"));
+		c_origen.addItem(new Item(16, "Pedro Muñoz"));
+		c_origen.addItem(new Item(17, "Campo de Criptana"));
+		c_origen.addItem(new Item(18, "Almaden"));
+		c_origen.addItem(new Item(19, "Pozo De La Serna"));
+		c_origen.addItem(new Item(20, "Argamasilla De Alba"));
+		c_origen.setMaximumRowCount(20);
+		getContentPane().add(c_origen);
+		c_origen.setPrototypeDisplayValue(" None of the above ");
+		c_origen.addActionListener(e -> {
+			JComboBox c = (JComboBox) e.getSource();
+			Item item = (Item) c.getSelectedItem();
+			System.out.println(item.getId());
+		});// FIN COMBOBOX ORIGEN
+
+		// COMBOBOX DESTINO
+		c_destino.setSize(149, 20);
+		c_destino.setLocation(321, 115);
+		c_destino.setModel(new DefaultComboBoxModel(new String[] {}));
+		c_destino.setEditable(true);
+		c_destino.addItem(new Item(1, "Ciudad Real"));
+		c_destino.addItem(new Item(2, "Puertollano"));
+		c_destino.addItem(new Item(3, "Tomelloso"));
+		c_destino.addItem(new Item(4, "Alcazar De San Juan"));
+		c_destino.addItem(new Item(5, "Valdepñas"));
+		c_destino.addItem(new Item(6, "La Solana"));
+		c_destino.addItem(new Item(7, "Membrilla"));
+		c_destino.addItem(new Item(8, "San Carlos Del Valle"));
+		c_destino.addItem(new Item(9, "Daimiel"));
+		c_destino.addItem(new Item(10, "Miguelturra"));
+		c_destino.addItem(new Item(11, "Herencia"));
+		c_destino.addItem(new Item(12, "Alhambra"));
+		c_destino.addItem(new Item(13, "Almagro"));
+		c_destino.addItem(new Item(14, "Sotuelamos"));
+		c_destino.addItem(new Item(15, "Malagon"));
+		c_destino.addItem(new Item(16, "Pedro Muñoz"));
+		c_destino.addItem(new Item(17, "Campo de Criptana"));
+		c_destino.addItem(new Item(18, "Almaden"));
+		c_destino.addItem(new Item(19, "Pozo De La Serna"));
+		c_destino.addItem(new Item(20, "Argamasilla De Alba"));
+		c_destino.setMaximumRowCount(20);
+		getContentPane().add(c_destino);
+		c_destino.setPrototypeDisplayValue(" None of the above ");
+		c_destino.addActionListener(e -> {
+			JComboBox c = (JComboBox) e.getSource();
+			Item item = (Item) c.getSelectedItem();
+			System.out.println(item.getId());
+		});// FIN COMBOBOX DESTINO
+		
+
+
+	}// FIN CONSTRUCTOR
+		// CLASE ITEM
+
+	public class Item {
+
+		private int id;
+		private String description;
+
+		public Item(int id, String description) {
+			this.id = id;
+			this.description = description;
+		}
+
+		public int getId() {
+			return id;
+		}
+
+		public String getDescription() {
+			return description;
+		}
+
+		@Override
+		public String toString() {
+			return description;
+		}
+	}// FIN CLASE ITEM
+
+	class handler implements ActionListener {
+
+		public void actionPerformed(ActionEvent ae) {
+			// COMPRUEBO SI EL BOTÓN ESTÁ ACCIONADO
+			if (ae.getSource() == btnAdelante) {
+
+				System.out.println();
+				// PASO EL TEXTFIELD A INT
+				int plazas = Integer.parseInt(t_plazas.getText());
+
+				String dni = "78237832";
+				// COMPRUEBO CON CHECKLOGIN, LO CUÁL ME DARÁ UN VALOR BOOLEAN. EN CASO DE SER
+				// VERDADERO LE DIGO QUE MUESTRE INICIO
+				// AL ESTAR DENTRO DE LA CONDICIÓN IF, NO LE PONGO == TRUE POR QUE SE OBVIA
+
+				if (db.checkPublicar(dni, ((Item) c_origen.getSelectedItem()).getId(),
+						((Item) c_destino.getSelectedItem()).getId(), plazas)) {
+
+					JOptionPane.showMessageDialog(null, "Viaje insertado con éxito");
+				}
+				// SI NO ES IGUAL, MUESTRO UN JOPTIONPANE QUE ME ADVIERTA DE QUE ALGO ESTOY
+				// HACIENDO MAL
+				else {
+					JOptionPane.showMessageDialog(null, "Error al validar", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+
+		}
+
+	}
+
+	// LE DIGO QUE ME EJECUTE EL REGISTRO
+	public static void main(String args[]) {
+		Publicar sample = new Publicar();
 	}
 }

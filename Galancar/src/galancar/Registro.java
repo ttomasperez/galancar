@@ -34,7 +34,7 @@ public class Registro extends JFrame {
 	Registro() {
 		// NOMBRE DE LA VENTANA
 		super("Registrate");
-		
+
 		c = getContentPane();
 
 		db = new ConnectorBBDD();
@@ -45,7 +45,7 @@ public class Registro extends JFrame {
 		getContentPane().add(t_nombre);
 		t_nombre.setColumns(10);
 
-		btnAdelante = new JButton("Adelante!");
+		btnAdelante = new JButton("\u00A1Reg\u00EDstrate!");
 		btnAdelante.setFont(new Font("Arial", Font.BOLD, 14));
 		btnAdelante.setBounds(337, 319, 158, 25);
 
@@ -63,7 +63,7 @@ public class Registro extends JFrame {
 				dispose();
 			}
 		});
-		
+
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
 		btnNewButton.setBounds(126, 319, 158, 25);
 		getContentPane().add(btnNewButton);
@@ -107,71 +107,71 @@ public class Registro extends JFrame {
 		t_fecha.setDateFormatString("yyyy-MM-dd");
 		t_fecha.setBounds(126, 172, 158, 22);
 		getContentPane().add(t_fecha);
-		
+
 		JLabel lblDni = new JLabel("DNI");
 		lblDni.setFont(new Font("Arial", Font.BOLD, 14));
 		lblDni.setBounds(90, 89, 24, 16);
 		getContentPane().add(lblDni);
-		
+
 		JLabel lblNombre = new JLabel("NOMBRE");
 		lblNombre.setFont(new Font("Arial", Font.BOLD, 14));
 		lblNombre.setBounds(507, 89, 63, 16);
 		getContentPane().add(lblNombre);
-		
+
 		JLabel lblApellidos = new JLabel("APELLIDOS");
 		lblApellidos.setFont(new Font("Arial", Font.BOLD, 14));
 		lblApellidos.setBounds(37, 132, 77, 16);
 		getContentPane().add(lblApellidos);
-		
+
 		JLabel lblContrasea = new JLabel("CONTRASE\u00D1A");
 		lblContrasea.setFont(new Font("Arial", Font.BOLD, 14));
 		lblContrasea.setBounds(507, 132, 95, 16);
 		getContentPane().add(lblContrasea);
-		
+
 		JLabel lblFechaDeNacimiento = new JLabel("NACIMIENTO");
 		lblFechaDeNacimiento.setFont(new Font("Arial", Font.BOLD, 14));
 		lblFechaDeNacimiento.setBounds(26, 175, 88, 16);
 		getContentPane().add(lblFechaDeNacimiento);
-		
+
 		JLabel lblProvincia = new JLabel("PROVINCIA");
 		lblProvincia.setFont(new Font("Arial", Font.BOLD, 14));
 		lblProvincia.setBounds(507, 175, 77, 16);
 		getContentPane().add(lblProvincia);
-		
+
 		JLabel lblLocalidad = new JLabel("LOCALIDAD");
 		lblLocalidad.setFont(new Font("Arial", Font.BOLD, 14));
 		lblLocalidad.setBounds(37, 218, 88, 16);
 		getContentPane().add(lblLocalidad);
-		
+
 		JLabel lblMvil = new JLabel("M\u00D3VIL");
 		lblMvil.setFont(new Font("Arial", Font.BOLD, 14));
 		lblMvil.setBounds(507, 218, 56, 16);
 		getContentPane().add(lblMvil);
-		
+
 		JLabel lblCorreoElectrnico = new JLabel("CORREO ELECTR\u00D3NICO");
 		lblCorreoElectrnico.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCorreoElectrnico.setFont(new Font("Arial", Font.BOLD, 14));
 		lblCorreoElectrnico.setBounds(126, 264, 369, 16);
 		getContentPane().add(lblCorreoElectrnico);
-		
+
 		JLabel label = new JLabel("");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setIcon(new ImageIcon(Registro.class.getResource("/imageresources/nombreblancosmall300.png")));
 		label.setBounds(0, 357, 632, 46);
 		getContentPane().add(label);
-		
+
 		JLabel label_1 = new JLabel("");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		label_1.setIcon(new ImageIcon(Registro.class.getResource("/imageresources/logosmall65.png")));
 		label_1.setBounds(0, 13, 605, 40);
 		getContentPane().add(label_1);
-		
+
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 300, 650, 500);
 	}
-	
-	//LE DIGO QUE ME EJECUTE EL REGISTRO
+
+	// LE DIGO QUE ME EJECUTE EL REGISTRO
 	public static void main(String args[]) {
 		Registro sample = new Registro();
 	}
@@ -181,28 +181,27 @@ public class Registro extends JFrame {
 		public void actionPerformed(ActionEvent ae) {
 			// COMPRUEBO SI EL BOTÓN ESTÁ ACCIONADO
 			if (ae.getSource() == btnAdelante) {
-				
-				//FUNCIÓN PARA CONVERTIR LA FECHA DEL JCALENDAR
-				java.util.Date Date= t_fecha.getDate();
-				SimpleDateFormat formato_fecha=new SimpleDateFormat("yyyy-mm-dd"); 
+
+				// FUNCIÓN PARA CONVERTIR LA FECHA DEL JCALENDAR
+				java.util.Date Date = t_fecha.getDate();
+				SimpleDateFormat formato_fecha = new SimpleDateFormat("yyyy-mm-dd");
 				String fecha = formato_fecha.format(Date);
-				
-				//AQUÍ TRANSFORMO MI FECHA UTIL.DATE EN SQL.DATE
+
+				// AQUÍ TRANSFORMO MI FECHA UTIL.DATE EN SQL.DATE
 				java.sql.Date sqlDate = new java.sql.Date(Date.getTime());
-				
-				//PASO EL TEXTFIELD A INT
+
+				// PASO EL TEXTFIELD A INT
 				int movil = Integer.parseInt(t_movil.getText());
-				
+
 				System.out.println(fecha);
 				// COMPRUEBO CON CHECKLOGIN, LO CUÁL ME DARÁ UN VALOR BOOLEAN. EN CASO DE SER
 				// VERDADERO LE DIGO QUE MUESTRE INICIO
 				// AL ESTAR DENTRO DE LA CONDICIÓN IF, NO LE PONGO == TRUE POR QUE SE OBVIA
 				if (db.checkRegister(t_dni.getText(), t_nombre.getText(), t_apellidos.getText(), t_contrasena.getText(),
-						sqlDate, t_provincia.getText(), t_localidad.getText(), movil,
-						t_email.getText())) {
+						sqlDate, t_provincia.getText(), t_localidad.getText(), movil, t_email.getText())) {
 
-					Home home = new Home();
-					home.setVisible(true);
+					Login login = new Login();
+					login.setVisible(true);
 					dispose();
 				}
 				// SI NO ES IGUAL, MUESTRO UN JOPTIONPANE QUE ME ADVIERTA DE QUE ALGO ESTOY

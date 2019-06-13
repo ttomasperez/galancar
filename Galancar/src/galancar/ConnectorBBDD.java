@@ -3,10 +3,15 @@ import java.sql.*;
 public class ConnectorBBDD 
 {
     Connection con;
+    // PS LOGIN
     PreparedStatement pst;
+    // PS REGISTRO
     PreparedStatement pst2;
+    // PS BUSCAR
+    PreparedStatement pst3;
     ResultSet rs;
     int rs2;
+    int rs3;
     ConnectorBBDD()
     {
         try{
@@ -17,6 +22,7 @@ public class ConnectorBBDD
             		+ "&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
                         pst=con.prepareStatement("select * from usuario where dni_usuario=? and contrasena=?");
                         pst2=con.prepareStatement("insert into usuario values (?,?,?,?,?,?,?,?,?)");
+                        pst3=con.prepareStatement("insert into viajes (dni_conductor, id_origen, id_destino, plazas_disponibles) values (?,?,?,?)");
              
            }
         catch (Exception e) 
@@ -25,7 +31,7 @@ public class ConnectorBBDD
             e.printStackTrace();
         }
     }
-     
+    // VALIDADOR DE LOGIN
     public Boolean checkLogin(String uname,String pwd)
     {
         try {
@@ -50,7 +56,9 @@ public class ConnectorBBDD
         }
 
 	
-}
+} // FIN DE VALIDADOR DE LOGIN
+    
+    // VALIDADOR DE REGISTRO
     public Boolean checkRegister(String dni_usuario, String nombre, String apellidos, String contrasena,
     		Date fecha_nacimiento, String provincia, String localidad, int movil, String email)
     {
@@ -87,5 +95,36 @@ public class ConnectorBBDD
         }
 
 	
-}   
+    } // FIN DEL VALIDADOR DE REGISTRO 
+    
+    // VALIDAR VIAJES
+    public Boolean checkPublicar(String dni_usuario, int id_origen, int id_destino, int numero_plazas)
+    {
+        try {
+            pst3.setString(1, dni_usuario);
+            pst3.setInt(2, id_origen);
+            pst3.setInt(3, id_destino);
+            pst3.setInt(4, numero_plazas);           
+            
+            rs3=pst3.executeUpdate();
+            
+            if(rs3==1)
+            {
+            	// VERDADERO SI ENCUENTRA LOS DATOS
+                return true;
+            }
+            else
+            {
+            	// FALSO SI NO LOS ENCUENTRA
+                return false;
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            System.out.println(e);
+            e.printStackTrace();
+            return false;
+        }
+
+	
+    }
 }
