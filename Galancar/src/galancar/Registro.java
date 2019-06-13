@@ -11,7 +11,14 @@ package galancar;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
 import java.awt.event.*;
+import java.io.File;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,6 +26,16 @@ import java.util.Calendar;
 
 import com.toedter.calendar.JDayChooser;
 import com.toedter.calendar.JDateChooser;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class Registro extends JFrame {
 	JTextField t_dni, t_nombre, t_apellidos, t_contrasena, t_provincia, t_localidad, t_movil, t_email;
@@ -202,6 +219,109 @@ public class Registro extends JFrame {
 					Login login = new Login();
 					login.setVisible(true);
 					dispose();
+
+					try {
+
+						// Connect Database
+						Connection connect = null;
+						Statement s = null;
+
+						Class.forName("com.mysql.cj.jdbc.Driver");
+						connect = DriverManager.getConnection("jdbc:mysql://localhost:3307/galancar?user=root&password="
+								+ "&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+
+						s = connect.createStatement();
+
+						String sql = "select dni_usuario,nombre,apellidos,contrasena,fecha_nacimiento,provincia,localidad,movil,email from usuario";
+
+						ResultSet rec = s.executeQuery(sql);
+
+						String strPath = "C:\\Users\\felip\\git\\galancar4\\Creacion XML\\usuario.xml";
+
+						DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+						DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+
+						// define root elements
+						Document doc = documentBuilder.newDocument();
+
+						Element ele = doc.createElement("Registros");
+						doc.appendChild(ele);
+
+						int iRows = 0;
+						while ((rec != null) && (rec.next())) {
+
+							++iRows;
+
+							// Row
+							Element sUsuarios = doc.createElement("Usuario");
+							ele.appendChild(sUsuarios);
+
+							// Attributes
+							Attr sAttrN = doc.createAttribute("Numero");
+							sAttrN.setValue(String.valueOf(iRows));
+							sUsuarios.setAttributeNode(sAttrN);
+
+							Element sDNI = doc.createElement("DNI_Usuario");
+							sDNI.appendChild(doc.createTextNode(rec.getString("dni_usuario")));
+							sUsuarios.appendChild(sDNI);
+
+							// CustomerID
+							Element snombre = doc.createElement("Nombre");
+							snombre.appendChild(doc.createTextNode(rec.getString("nombre")));
+							sUsuarios.appendChild(snombre);
+
+							// Name
+							Element sapellidos = doc.createElement("Apellidos");
+							sapellidos.appendChild(doc.createTextNode(rec.getString("apellidos")));
+							sUsuarios.appendChild(sapellidos);
+
+							// Email
+							Element scontrasena = doc.createElement("Contrasena");
+							scontrasena.appendChild(doc.createTextNode(rec.getString("contrasena")));
+							sUsuarios.appendChild(scontrasena);
+
+							// CountryCode
+							Element sfecha_nacimiento = doc.createElement("Fecha_Nacimiento");
+							sfecha_nacimiento.appendChild(doc.createTextNode(rec.getString("fecha_nacimiento")));
+							sUsuarios.appendChild(sfecha_nacimiento);
+
+							// Budget
+							Element sprovincia = doc.createElement("Provincia");
+							sprovincia.appendChild(doc.createTextNode(rec.getString("provincia")));
+							sUsuarios.appendChild(sprovincia);
+
+							// Used
+							Element slocalidad = doc.createElement("Localidad");
+							slocalidad.appendChild(doc.createTextNode(rec.getString("localidad")));
+							sUsuarios.appendChild(slocalidad);
+
+							Element smovil = doc.createElement("Movil");
+							smovil.appendChild(doc.createTextNode(rec.getString("movil")));
+							sUsuarios.appendChild(smovil);
+
+							Element semail = doc.createElement("E-mail");
+							semail.appendChild(doc.createTextNode(rec.getString("email")));
+							sUsuarios.appendChild(semail);
+
+						}
+
+						// creating and writing to xml file
+						TransformerFactory tff = TransformerFactory.newInstance();
+						Transformer tf = tff.newTransformer();
+						DOMSource domSource = new DOMSource(doc);
+						StreamResult streamResult = new StreamResult(new File(strPath));
+
+						tf.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+						tf.setOutputProperty(OutputKeys.INDENT, "yes");
+
+						tf.transform(domSource, streamResult);
+
+						System.out.println("XML con usuarios creados!");
+
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+
 				}
 				// SI NO ES IGUAL, MUESTRO UN JOPTIONPANE QUE ME ADVIERTA DE QUE ALGO ESTOY
 				// HACIENDO MAL

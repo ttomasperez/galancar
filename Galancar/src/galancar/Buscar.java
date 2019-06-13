@@ -256,12 +256,15 @@ public class Buscar extends JFrame {
 					ResultSet resultSet = null;
 					// Driver
 					Class.forName("com.mysql.cj.jdbc.Driver");
-					connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/galancar?user=root&password="
+					connect = DriverManager.getConnection("jdbc:mysql://localhost:3307/galancar?user=root&password="
 							+ "&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
 					
 					// Construir una query para SQL con los datos del combobox
-					String consulta = "select id_viaje,dni_conductor,id_origen,id_destino,plazas_disponibles from viajes where id_origen = " 
-					+ ((Item)comboBox.getSelectedItem()).getId()+" and id_destino= "+((Item)comboBox_1.getSelectedItem()).getId();
+					//String consulta = "select id_viaje,dni_conductor,id_origen,id_destino,plazas_disponibles from viajes where id_origen = " 
+					//+ ((Item)comboBox.getSelectedItem()).getId()+" and id_destino= "+((Item)comboBox_1.getSelectedItem()).getId();
+					String consulta = "select id_viaje, dni_conductor, l1.nombre_localidad origen, l2.nombre_localidad destino, plazas_disponibles from viajes " + 
+							" inner join localidad l1 on viajes.id_origen=l1.id_localidad inner join localidad l2 on viajes.id_destino=l2.id_localidad " + 
+							" where id_origen = "+ ((Item)comboBox.getSelectedItem()).getId()+" and id_destino= "+((Item)comboBox_1.getSelectedItem()).getId();
 					//JOptionPane.showMessageDialog(null, consulta); //solo para probar
 					query = connect.createStatement();
 					ResultSet resultado = query.executeQuery(consulta);
@@ -274,11 +277,11 @@ public class Buscar extends JFrame {
 						String dni_conductor = resultado.getString("dni_conductor");
 						table.setValueAt(dni_conductor, i, 1);
 
-						int id_origen = resultado.getInt("id_origen");
-						table.setValueAt(id_origen, i, 2);
+						String origen = resultado.getString("origen");
+						table.setValueAt(origen, i, 2);
 
-						int id_destino = resultado.getInt("id_destino");
-						table.setValueAt(id_destino, i, 3);
+						String destino = resultado.getString("destino");
+						table.setValueAt(destino, i, 3);
 						
 						int plazas_disponibles = resultado.getInt("plazas_disponibles");
 						table.setValueAt(plazas_disponibles, i, 4);

@@ -28,7 +28,7 @@ public class ConnectorBBDD
              
             // CONECTO CON LA BDD
             Class.forName("com.mysql.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/galancar?user=root&password="
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3307/galancar?user=root&password="
             		+ "&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
                         pst=con.prepareStatement("select * from usuario where dni_usuario=? and contrasena=?");
                         pst2=con.prepareStatement("insert into usuario values (?,?,?,?,?,?,?,?,?)");
