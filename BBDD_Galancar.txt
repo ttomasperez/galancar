@@ -69,7 +69,7 @@ insert into localidad values (10, 'Miguelturra');
 insert into localidad values (11, 'Herencia');
 insert into localidad values (12, 'Alhambra');
 insert into localidad values (13, 'Almagro');
-insert into localidad values (14, 'Sutuélamos');
+insert into localidad values (14, 'Sotuélamos');
 insert into localidad values (15, 'Malagon');
 insert into localidad values (16, 'Pedro Muñoz');
 insert into localidad values (17, 'Campo de Criptana');
