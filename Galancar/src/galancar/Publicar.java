@@ -1,4 +1,3 @@
-
 /* 
  *  PROYECTO GALANCAR.
  * 	
@@ -8,6 +7,7 @@
  *  
  * 
  * */
+
 package galancar;
 
 import java.awt.*;

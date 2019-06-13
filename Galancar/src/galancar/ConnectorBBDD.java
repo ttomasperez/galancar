@@ -1,3 +1,13 @@
+
+/* 
+ *  PROYECTO GALANCAR.
+ * 	
+ * 	FELIPE PARRA
+ * 	JULIÁN DEL OLMO
+ *  TOMÁS PÉREZ
+ *  
+ * 
+ * */
 package galancar;
 import java.sql.*;
 public class ConnectorBBDD 
