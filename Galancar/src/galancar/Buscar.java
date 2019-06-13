@@ -110,7 +110,7 @@ public class Buscar extends JFrame {
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// FUNCIÓN DEL BOTÓN PERFIL
-				Perfil perfil = new Perfil();
+				Perfil perfil = new Perfil(dni_user);
 				perfil.setVisible(true);
 				dispose();
 			}
@@ -188,7 +188,7 @@ public class Buscar extends JFrame {
 	    comboBox.addItem(new Item(2, "Puertollano"));
 	    comboBox.addItem(new Item(3, "Tomelloso"));
 	    comboBox.addItem(new Item(4, "Alcazar De San Juan"));
-	    comboBox.addItem(new Item(5, "Valdepñas"));
+	    comboBox.addItem(new Item(5, "Valdepeñas"));
 	    comboBox.addItem(new Item(6, "La Solana"));
 	    comboBox.addItem(new Item(7, "Membrilla"));
 	    comboBox.addItem(new Item(8, "San Carlos Del Valle"));
@@ -222,7 +222,7 @@ public class Buscar extends JFrame {
 	    comboBox_1.addItem(new Item(2, "Puertollano"));
 	    comboBox_1.addItem(new Item(3, "Tomelloso"));
 	    comboBox_1.addItem(new Item(4, "Alcazar De San Juan"));
-	    comboBox_1.addItem(new Item(5, "Valdepñas"));
+	    comboBox_1.addItem(new Item(5, "Valdepeñas"));
 	    comboBox_1.addItem(new Item(6, "La Solana"));
 	    comboBox_1.addItem(new Item(7, "Membrilla"));
 	    comboBox_1.addItem(new Item(8, "San Carlos Del Valle"));
@@ -323,7 +323,7 @@ public class Buscar extends JFrame {
 				new String[] { "N\u00BA DE VIAJE", "DNI CONDUCTOR", "ORIGEN", "DESTINO", "N\u00BA PLAZAS" }));
 		table.getColumnModel().getColumn(1).setPreferredWidth(112);
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 239, 608, 98);
+		scrollPane.setBounds(10, 202, 608, 135);
 		contentPane.add(scrollPane).setVisible(true);
 		getContentPane().add(scrollPane);
 
@@ -337,7 +337,7 @@ public class Buscar extends JFrame {
 
 		textFieldBuscar = new JTextField();
 		textFieldBuscar.setFont(new Font("Arial", Font.BOLD, 14));
-		textFieldBuscar.setBounds(286, 390, 34, 22);
+		textFieldBuscar.setBounds(286, 375, 34, 22);
 		contentPane.add(textFieldBuscar);
 		textFieldBuscar.setColumns(10);
 
@@ -384,12 +384,8 @@ public class Buscar extends JFrame {
 			}
 		});
 		btnUnirse.setFont(new Font("Arial", Font.BOLD, 14));
-		btnUnirse.setBounds(234, 425, 97, 25);
+		btnUnirse.setBounds(255, 401, 97, 25);
 		contentPane.add(btnUnirse);
-		
-		JLabel lblId_Viaje = new JLabel("Id Viaje");
-		lblId_Viaje.setBounds(276, 375, 46, 14);
-		contentPane.add(lblId_Viaje);
 		
 		
 

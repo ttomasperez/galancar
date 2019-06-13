@@ -51,7 +51,6 @@ public class Publicar extends JFrame {
 	
 		
 		// NOMBRE DE LA VENTANA
-		super("Publicar");
 		this.dni_user=dni_user;
 		// CONTAINER
 		c = getContentPane();
@@ -101,7 +100,7 @@ public class Publicar extends JFrame {
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// FUNCIÓN DEL BOTÓN PERFIL
-				Perfil perfil = new Perfil();
+				Perfil perfil = new Perfil(dni_user);
 				perfil.setVisible(true);
 				dispose();
 				
@@ -141,6 +140,7 @@ public class Publicar extends JFrame {
 		getContentPane().add(label_1);
 
 		t_plazas = new JTextField();
+		t_plazas.setFont(new Font("Arial", Font.BOLD, 14));
 		t_plazas.setBounds(260, 174, 116, 22);
 		getContentPane().add(t_plazas);
 		t_plazas.setColumns(10);

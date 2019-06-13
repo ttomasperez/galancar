@@ -52,7 +52,6 @@ public class Registro extends JFrame {
 
 	Registro() {
 		// NOMBRE DE LA VENTANA
-		super("Registrate");
 
 		c = getContentPane();
 

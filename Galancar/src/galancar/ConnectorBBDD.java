@@ -21,10 +21,12 @@ public class ConnectorBBDD
     PreparedStatement pst2;
     // PS BUSCAR
     PreparedStatement pst3;
+    // PS PERFIL
+    PreparedStatement pst4;
     ResultSet rs;
     int rs2;
     int rs3;
-    
+    ResultSet rs4;
     
     
     
@@ -39,7 +41,7 @@ public class ConnectorBBDD
                         pst=con.prepareStatement("select * from usuario where dni_usuario=? and contrasena=?");
                         pst2=con.prepareStatement("insert into usuario values (?,?,?,?,?,?,?,?,?)");
                         pst3=con.prepareStatement("insert into viajes (dni_conductor, id_origen, id_destino, plazas_disponibles) values (?,?,?,?)");
-             
+                        pst4=con.prepareStatement("select dni_usuario, nombre, apellidos, contrasena, fecha_nacimiento, provincia, localidad, movil, email from usuario where dni_usuario=?");
            }
         catch (Exception e) 
         {
@@ -152,5 +154,33 @@ public class ConnectorBBDD
 
 	
     }
+    // VALIDAR PERFIL
+    public Boolean checkPerfil(String dni_usuario)
+    {
+        try {
+                        
+            pst4.setString(1, dni_usuario);   
+            
+            
+            
+
+            rs4=pst4.executeQuery();
+            if(rs4.next())
+            {
+                
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            System.out.println(e);
+            return false;
+        }
+
+	
+} // FIN DE VALIDADOR DE LOGIN
     
 }
