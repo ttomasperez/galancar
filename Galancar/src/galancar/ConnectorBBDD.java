@@ -9,6 +9,7 @@
  * 
  * */
 package galancar;
+import java.awt.EventQueue;
 import java.sql.*;
 public class ConnectorBBDD 
 {
@@ -22,13 +23,17 @@ public class ConnectorBBDD
     ResultSet rs;
     int rs2;
     int rs3;
+    
+    
+    
+    
     ConnectorBBDD()
     {
         try{
              
             // CONECTO CON LA BDD
             Class.forName("com.mysql.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3307/galancar?user=root&password="
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/galancar?user=root&password="
             		+ "&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
                         pst=con.prepareStatement("select * from usuario where dni_usuario=? and contrasena=?");
                         pst2=con.prepareStatement("insert into usuario values (?,?,?,?,?,?,?,?,?)");
@@ -41,6 +46,14 @@ public class ConnectorBBDD
             e.printStackTrace();
         }
     }
+    public String getDni_usuario() {
+		return dni_login;
+	}
+	public void setDni_usuario(String dni_usuario) {
+		this.dni_login = dni_usuario;
+	}
+
+	String dni_login;
     // VALIDADOR DE LOGIN
     public Boolean checkLogin(String uname,String pwd)
     {
@@ -84,13 +97,13 @@ public class ConnectorBBDD
             pst2.setString(9, email);
             
             
-            
             rs2=pst2.executeUpdate();
             
             if(rs2==1)
             {
             	// VERDADERO SI ENCUENTRA LOS DATOS
                 return true;
+               
             }
             else
             {
@@ -111,6 +124,7 @@ public class ConnectorBBDD
     public Boolean checkPublicar(String dni_usuario, int id_origen, int id_destino, int numero_plazas)
     {
         try {
+        	ConnectorBBDD db = new ConnectorBBDD();
             pst3.setString(1, dni_usuario);
             pst3.setInt(2, id_origen);
             pst3.setInt(3, id_destino);
@@ -137,4 +151,5 @@ public class ConnectorBBDD
 
 	
     }
+    
 }

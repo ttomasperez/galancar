@@ -13,10 +13,13 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class Perfil extends JFrame {
 
 	private JPanel contentPane;
+	private String dni_usuario;
+	private JTextField textField;
 	
 	/**
 	 * Launch the application.
@@ -50,7 +53,7 @@ public class Perfil extends JFrame {
 		btnPublicar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// FUNCIÓN DEL BOTÓN PUBLICAR 
-				Publicar publicar = new Publicar(); 
+				Publicar publicar = new Publicar(dni_user); 
 				publicar.setVisible(true); 
 				dispose();
 			}
@@ -92,7 +95,7 @@ public class Perfil extends JFrame {
 		btnGalancar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// FUNCIÓN DEL BOTÓN INICIO
-				Home home = new Home(); 
+				Home home = new Home(dni_user); 
 				home.setVisible(true); 
 				dispose();
 			}
@@ -105,5 +108,14 @@ public class Perfil extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon(Perfil.class.getResource("/imageresources/logosmall75.png")));
 		lblNewLabel.setBounds(557, 395, 75, 58);
 		contentPane.add(lblNewLabel);
+		
+		textField = new JTextField();
+		textField.setBounds(168, 223, 116, 22);
+		contentPane.add(textField);
+		textField.setColumns(10);
+	}
+
+	public Perfil(String dni_usuario) {
+		this.dni_usuario=dni_usuario;
 	}
 }

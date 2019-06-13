@@ -41,15 +41,17 @@ public class Publicar extends JFrame {
 	ConnectorBBDD db;
 
 	JTextField t_plazas;
-
+	String dni_user;
+	
 	// CONSTRUCTOR
-	Publicar() {
+	Publicar(String dni_user) {
 		
 		
+	
 		
 		// NOMBRE DE LA VENTANA
 		super("Publicar");
-
+		this.dni_user=dni_user;
 		// CONTAINER
 		c = getContentPane();
 
@@ -66,7 +68,7 @@ public class Publicar extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// FUNCIÓN DEL BOTÓN BUSCAR
-				Buscar buscar = new Buscar();
+				Buscar buscar = new Buscar(dni_user);
 				buscar.setVisible(true);
 				dispose();
 			}
@@ -76,7 +78,7 @@ public class Publicar extends JFrame {
 		btnPublicar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// FUNCIÓN DEL BOTÓN PUBLICAR
-				Publicar publicar = new Publicar();
+				Publicar publicar = new Publicar(dni_user);
 				publicar.setVisible(true);
 				dispose();		
 			}
@@ -113,7 +115,7 @@ public class Publicar extends JFrame {
 		btnGalancar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// FUNCIÓN DEL BOTÓN INICIO
-				Home home = new Home();
+				Home home = new Home(dni_user);
 				home.setVisible(true);
 				dispose();
 			}
@@ -294,13 +296,12 @@ public class Publicar extends JFrame {
 				System.out.println();
 				// PASO EL TEXTFIELD A INT
 				int plazas = Integer.parseInt(t_plazas.getText());
-
-				String dni = "78237832";
+				
 				// COMPRUEBO CON CHECKLOGIN, LO CUÁL ME DARÁ UN VALOR BOOLEAN. EN CASO DE SER
 				// VERDADERO LE DIGO QUE MUESTRE INICIO
 				// AL ESTAR DENTRO DE LA CONDICIÓN IF, NO LE PONGO == TRUE POR QUE SE OBVIA
 
-				if (db.checkPublicar(dni, ((Item) c_origen.getSelectedItem()).getId(),
+				if (db.checkPublicar(dni_user, ((Item) c_origen.getSelectedItem()).getId(),
 						((Item) c_destino.getSelectedItem()).getId(), plazas)) {
 
 					JOptionPane.showMessageDialog(null, "Viaje insertado con éxito");
@@ -317,7 +318,7 @@ public class Publicar extends JFrame {
 	}
 
 	// LE DIGO QUE ME EJECUTE EL REGISTRO
-	public static void main(String args[]) {
-		Publicar sample = new Publicar();
-	}
+	/*public static void main(String args[]) {
+		Publicar sample = new Publicar("");
+	}*/
 }

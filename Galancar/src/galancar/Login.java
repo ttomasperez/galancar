@@ -27,12 +27,14 @@ public class Login extends JFrame
 
     ConnectorBBDD db;
     private JLabel label_1;
- 
+    
     Login()
     {
     	// NOMBRE DE LA VENTANA
         super("Galancar");
  
+        
+        
         c=getContentPane();
  
         db=new ConnectorBBDD();
@@ -48,6 +50,7 @@ public class Login extends JFrame
         
         t_name=new JTextField(10);
         t_name.setBounds(304, 189, 158, 22);
+        
         t_pass=new JPasswordField(10);
         t_pass.setBounds(304, 224, 158, 22);
         
@@ -111,12 +114,19 @@ public class Login extends JFrame
                 String pwd=null;
                 pwd=String.copyValueOf(temp_pwd);
                 System.out.println("Username,Pwd:"+t_name.getText()+","+pwd);
+                
+                
+                String dni_user=null;
+                dni_user=t_name.getText();
+                db.setDni_usuario(dni_user);
  
+
                 // COMPRUEBO CON CHECKLOGIN, LO CUÁL ME DARÁ UN VALOR BOOLEAN. EN CASO DE SER VERDADERO LE DIGO QUE MUESTRE INICIO
                 // AL ESTAR DENTRO DE LA CONDICIÓN IF, NO LE PONGO == TRUE POR QUE SE OBVIA
                 if(db.checkLogin(t_name.getText(), pwd))
                 {
-                	Home home = new Home(); 
+                	
+                	Home home = new Home(dni_user); 
     				home.setVisible(true); 
     				dispose();
                 }

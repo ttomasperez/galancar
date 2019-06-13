@@ -23,6 +23,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Scanner;
 
 import com.toedter.calendar.JDayChooser;
 import com.toedter.calendar.JDateChooser;
@@ -226,8 +227,8 @@ public class Registro extends JFrame {
 						Connection connect = null;
 						Statement s = null;
 
-						Class.forName("com.mysql.cj.jdbc.Driver");
-						connect = DriverManager.getConnection("jdbc:mysql://localhost:3307/galancar?user=root&password="
+						Class.forName("com.mysql.jdbc.Driver");
+						connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/galancar?user=root&password="
 								+ "&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
 
 						s = connect.createStatement();
@@ -235,8 +236,11 @@ public class Registro extends JFrame {
 						String sql = "select dni_usuario,nombre,apellidos,contrasena,fecha_nacimiento,provincia,localidad,movil,email from usuario";
 
 						ResultSet rec = s.executeQuery(sql);
+						
 
-						String strPath = "C:\\Users\\felip\\git\\galancar4\\Creacion XML\\usuario.xml";
+						String ruta = JOptionPane.showInputDialog("Introduce la ruta donde quieres que se guarde el fichero XML seguido del nombre + .xml: ");
+						
+						String strPath = ruta;
 
 						DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
 						DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
@@ -316,7 +320,7 @@ public class Registro extends JFrame {
 
 						tf.transform(domSource, streamResult);
 
-						System.out.println("XML con usuarios creados!");
+						JOptionPane.showMessageDialog(null, "Introducido con éxito");
 
 					} catch (Exception e) {
 						e.printStackTrace();

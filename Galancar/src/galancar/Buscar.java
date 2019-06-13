@@ -34,17 +34,19 @@ public class Buscar extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField textFieldBuscar;
+	String dni_user;
 
 	/**
 	 * Launch the application.
 	 */
+		
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Buscar frame = new Buscar();
+					Buscar frame = new Buscar("");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +58,8 @@ public class Buscar extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Buscar() {
+	public Buscar(String dni_user) {
+		this.dni_user=dni_user;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 300, 650, 500);
 		contentPane = new JPanel();
@@ -68,7 +71,7 @@ public class Buscar extends JFrame {
 		btnPublicar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// FUNCIÓN DEL BOTÓN PUBLICAR
-				Publicar publicar = new Publicar();
+				Publicar publicar = new Publicar(dni_user);
 				publicar.setVisible(true);
 				dispose();
 			}
@@ -82,7 +85,7 @@ public class Buscar extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// FUNCIÓN DEL BOTÓN BUSCAR
-				Buscar buscar = new Buscar();
+				Buscar buscar = new Buscar(dni_user);
 				buscar.setVisible(true);
 				dispose();
 			}
@@ -110,7 +113,7 @@ public class Buscar extends JFrame {
 		btnGalancar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// FUNCIÓN DEL BOTÓN INICIO
-				Home home = new Home();
+				Home home = new Home(dni_user);
 				home.setVisible(true);
 				dispose();
 			}
@@ -232,6 +235,7 @@ public class Buscar extends JFrame {
 	      Item item = (Item) c.getSelectedItem();
 	      System.out.println(item.getId() + " : " + item.getDescription());
 	    });
+	    System.out.println(dni_user);
 		
 
 		JLabel lblOrigen = new JLabel("Origen");
@@ -255,8 +259,8 @@ public class Buscar extends JFrame {
 					Statement query = null;
 					ResultSet resultSet = null;
 					// Driver
-					Class.forName("com.mysql.cj.jdbc.Driver");
-					connect = DriverManager.getConnection("jdbc:mysql://localhost:3307/galancar?user=root&password="
+					Class.forName("com.mysql.jdbc.Driver");
+					connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/galancar?user=root&password="
 							+ "&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
 					
 					// Construir una query para SQL con los datos del combobox
@@ -320,20 +324,20 @@ public class Buscar extends JFrame {
 		lblenQueNumero.setBounds(0, 348, 632, 14);
 		contentPane.add(lblenQueNumero);
 
-		textField = new JTextField();
-		textField.setFont(new Font("Arial", Font.BOLD, 14));
-		textField.setBounds(234, 384, 34, 22);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textFieldBuscar = new JTextField();
+		textFieldBuscar.setFont(new Font("Arial", Font.BOLD, 14));
+		textFieldBuscar.setBounds(286, 390, 34, 22);
+		contentPane.add(textFieldBuscar);
+		textFieldBuscar.setColumns(10);
 
 		JButton btnUnirse = new JButton("Unirse");
 		btnUnirse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// FUNCIÓN DEL BOTÓN UNIRSE
 				
-				Home home = new Home();
+				Home home = new Home(dni_user);
 				home.setVisible(true);
-				Buscar buscar = new Buscar();
+				Buscar buscar = new Buscar(dni_user);
 				buscar.setVisible(false);
 				dispose();
 				try {
@@ -344,23 +348,25 @@ public class Buscar extends JFrame {
 					PreparedStatement query = null;
 					ResultSet resultSet = null;
 					// Driver
-					Class.forName("com.mysql.cj.jdbc.Driver");
-					connect = DriverManager.getConnection("jdbc:mysql://localhost:3307/galancar?user=root&password="
+					Class.forName("com.mysql.jdbc.Driver");
+					connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/galancar?user=root&password="
 							+ "&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
 					
 					// Construir una query para SQL con los datos del combobox
-					String consulta = "insert into galancar.pasajero_viaje " +
-	        				"values("+ textField.getText()+",'" + textField_1.getText()+"')";
-					//JOptionPane.showMessageDialog(null, consulta); //solo para probar
+					String consulta = "insert into galancar.pasajero_viaje (id_viaje, dni_pasajero) " +
+	        				"values("+textFieldBuscar.getText()+",'"+dni_user+"')";
+					System.out.println(textFieldBuscar.getText());
+					//JOptionPane.showMessageDialog(null, consult); //solo para probar
 					query = connect.prepareStatement(consulta);
 					int resultado = query.executeUpdate(consulta);
+					
 					// Tratar el resultSet para meterlo en la tabla
 					int i = 0;
 					
 				}
 
 				catch (Exception e1) {
-
+					e1.printStackTrace();
 				}
 				
 
@@ -371,17 +377,8 @@ public class Buscar extends JFrame {
 		contentPane.add(btnUnirse);
 		
 		JLabel lblId_Viaje = new JLabel("Id Viaje");
-		lblId_Viaje.setBounds(178, 389, 46, 14);
+		lblId_Viaje.setBounds(276, 375, 46, 14);
 		contentPane.add(lblId_Viaje);
-		
-		JLabel lblDNI_Pasajero = new JLabel("DNI Pasajero");
-		lblDNI_Pasajero.setBounds(427, 389, 77, 14);
-		contentPane.add(lblDNI_Pasajero);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(321, 386, 86, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
 		
 		
 
