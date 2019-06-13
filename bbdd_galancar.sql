@@ -1,10 +1,9 @@
--- CreaciÛn base de datos
+-- Creaci√≥n base de datos
 create database galancar;
 
 use galancar; 
-drop table pasajero_viaje;
 
--- CreaciÛn de tablas
+-- Creaci√≥n de tablas
 -- Tabla usuario
 CREATE TABLE usuario (
     dni_usuario VARCHAR(30) PRIMARY KEY NOT NULL,
@@ -24,16 +23,12 @@ CREATE TABLE localidad (
 );
 
 CREATE TABLE viajes (
-    id_viaje INT PRIMARY KEY NOT NULL,
+    id_viaje INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     dni_conductor VARCHAR(30) NOT NULL,
-    dni_pasajero VARCHAR(30) NULL,
     id_origen INT NOT NULL,
     id_destino INT NOT NULL,
     plazas_disponibles INT(1) NOT NULL,
     FOREIGN KEY (dni_conductor)
-        REFERENCES usuario (dni_usuario)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (dni_pasajero)
         REFERENCES usuario (dni_usuario)
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (id_origen)
@@ -59,8 +54,8 @@ CREATE TABLE viajes (
 insert into localidad values (1, 'Ciudad Real');
 insert into localidad values (2, 'Puertollano');
 insert into localidad values (3, 'Tomelloso');
-insert into localidad values (4, 'Alc·zar De San Juan');
-insert into localidad values (5, 'ValdepeÒas');
+insert into localidad values (4, 'Alc√°zar De San Juan');
+insert into localidad values (5, 'Valdepe√±as');
 insert into localidad values (6, 'La Solana');
 insert into localidad values (7, 'Membrilla');
 insert into localidad values (8, 'San Carlos Del Valle');
@@ -69,10 +64,18 @@ insert into localidad values (10, 'Miguelturra');
 insert into localidad values (11, 'Herencia');
 insert into localidad values (12, 'Alhambra');
 insert into localidad values (13, 'Almagro');
-insert into localidad values (14, 'SotuÈlamos');
+insert into localidad values (14, 'Sotu√©lamos');
 insert into localidad values (15, 'Malagon');
-insert into localidad values (16, 'Pedro MuÒoz');
+insert into localidad values (16, 'Pedro Mu√±oz');
 insert into localidad values (17, 'Campo de Criptana');
-insert into localidad values (18, 'AlmadÈn');
+insert into localidad values (18, 'Almad√©n');
 insert into localidad values (19, 'Pozo De La Serna');
 insert into localidad values (20, 'Argamasilla De Alba');
+-- Triggers
+CREATE DEFINER=`root`@`localhost` TRIGGER `pasajero_viaje_AFTER_INSERT` AFTER INSERT ON `pasajero_viaje` FOR EACH ROW BEGIN
+	update viajes set plazas_disponibles = plazas_disponibles - 1 where id_viaje=new.id_viaje;
+END
+
+CREATE DEFINER=`root`@`localhost` TRIGGER `pasajero_viaje_AFTER_DELETE` AFTER DELETE ON `pasajero_viaje` FOR EACH ROW BEGIN
+	update viajes set plazas_disponibles = plazas_disponibles + 1 where id_viaje=old.id_viaje;
+END
