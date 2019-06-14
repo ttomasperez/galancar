@@ -41,7 +41,7 @@ public class ConnectorBBDD
                         pst=con.prepareStatement("select * from usuario where dni_usuario=? and contrasena=?");
                         pst2=con.prepareStatement("insert into usuario values (?,?,?,?,?,?,?,?,?)");
                         pst3=con.prepareStatement("insert into viajes (dni_conductor, id_origen, id_destino, plazas_disponibles) values (?,?,?,?)");
-                        pst4=con.prepareStatement("select dni_usuario, nombre, apellidos, contrasena, fecha_nacimiento, provincia, localidad, movil, email from usuario where dni_usuario=?");
+                        pst4=con.prepareStatement("select nombre, apellidos, contrasena, fecha_nacimiento, provincia, localidad, movil, email from usuario where dni_usuario=?");
            }
         catch (Exception e) 
         {
@@ -159,14 +159,15 @@ public class ConnectorBBDD
     {
         try {
                         
-            pst4.setString(1, dni_usuario);   
             
-            
-            
-
+  
             rs4=pst4.executeQuery();
+
+            
             if(rs4.next())
             {
+            	
+               
                 
                 return true;
             }
@@ -180,7 +181,37 @@ public class ConnectorBBDD
             return false;
         }
 
-	
-} // FIN DE VALIDADOR DE LOGIN
+    }
     
-}
+    public CUsuario obtenerDatosUsuario(String dni_usuario) {
+    	CUsuario oUsuario = null;
+    	try {
+    		
+    		pst4.setString(1, dni_usuario);   
+    		rs4=pst4.executeQuery();
+    		rs4.next();
+    	    String nombre=rs4.getString("nombre");
+    	    String apellidos=rs4.getString("apellidos");
+    	    String contrasena=rs4.getString("contrasena");
+    	    String fecha_nacimiento=rs4.getString("fecha_nacimiento");
+    	    String provincia=rs4.getString("provincia");
+    	    String localidad=rs4.getString("localidad");
+    	    String movil=rs4.getString("movil");
+    	    String email=rs4.getString("email");
+    	    
+    	    oUsuario = new CUsuario(nombre, apellidos, contrasena, fecha_nacimiento, provincia, localidad, movil, email);
+    	    } catch (Exception e) {
+    	    	e.printStackTrace();
+    	    }
+    	
+    	return oUsuario;
+    }
+    
+    
+} // FIN DE LA CLASE CONECTORBBDD
+
+
+    /**/
+    
+
+

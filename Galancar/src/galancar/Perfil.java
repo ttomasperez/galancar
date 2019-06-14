@@ -24,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -40,6 +41,8 @@ public class Perfil extends JFrame {
 	
 	ConnectorBBDD db;
 	String dni_user;
+	ResultSet rs4;
+	
 	JTextField t_nombre, t_dni, t_nacimiento, t_provincia, t_apellidos, t_localidad, t_contrasena, t_movil, t_email;
 	private JLabel lblPron;
 	private JLabel lblProvincia;
@@ -61,6 +64,7 @@ public class Perfil extends JFrame {
 		c = getContentPane();
 
 		db = new ConnectorBBDD();
+		
 		getContentPane().setLayout(null);
 		
 		btnBuscar = new JButton("Buscar");
@@ -239,6 +243,17 @@ public class Perfil extends JFrame {
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 300, 650, 500);
+		CUsuario oUsuario = db.obtenerDatosUsuario(dni_user);
+		t_dni.setText(dni_user);
+		t_nombre.setText(oUsuario.getNombre());
+		t_apellidos.setText(oUsuario.getApellidos());
+		t_contrasena.setText(oUsuario.getContrasena());
+		t_nacimiento.setText(oUsuario.getFecha_nacimiento());
+		t_provincia.setText(oUsuario.getNombre());
+		t_localidad.setText(oUsuario.getNombre());
+		t_movil.setText(oUsuario.getMovil());
+		t_email.setText(oUsuario.getEmail());
+		
 		
 	}// FIN CONSTRUCTOR
 	/*class handler implements ActionListener

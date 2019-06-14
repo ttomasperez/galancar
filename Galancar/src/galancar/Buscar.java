@@ -336,6 +336,7 @@ public class Buscar extends JFrame {
 		contentPane.add(lblenQueNumero);
 
 		textFieldBuscar = new JTextField();
+		textFieldBuscar.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldBuscar.setFont(new Font("Arial", Font.BOLD, 14));
 		textFieldBuscar.setBounds(286, 375, 34, 22);
 		contentPane.add(textFieldBuscar);
