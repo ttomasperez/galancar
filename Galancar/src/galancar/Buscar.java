@@ -47,12 +47,9 @@ public class Buscar extends JFrame {
 	private JTable table;
 	private JTextField textFieldBuscar;
 	String dni_user;
+	int plazas_libres;
+	String dni_validar;
 
-	/**
-	 * Launch the application.
-	 */
-		
-	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -66,13 +63,12 @@ public class Buscar extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Buscar(String dni_user) {
-		this.dni_user=dni_user;
+		super("Sesión Iniciada por el usuario: " + dni_user);
+		this.dni_user = dni_user;
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(300, 300, 650, 500);
+		setBounds(500, 200, 650, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -87,6 +83,7 @@ public class Buscar extends JFrame {
 				dispose();
 			}
 		});
+
 		btnPublicar.setIcon(new ImageIcon(Buscar.class.getResource("/imageresources/buscar35.png")));
 		btnPublicar.setFont(new Font("Arial", Font.BOLD, 14));
 		btnPublicar.setBounds(0, 0, 137, 38);
@@ -101,6 +98,7 @@ public class Buscar extends JFrame {
 				dispose();
 			}
 		});
+
 		btnBuscar.setIcon(new ImageIcon(Buscar.class.getResource("/imageresources/lupa30.png")));
 		btnBuscar.setFont(new Font("Arial", Font.BOLD, 13));
 		btnBuscar.setBounds(137, 0, 137, 38);
@@ -115,6 +113,7 @@ public class Buscar extends JFrame {
 				dispose();
 			}
 		});
+
 		btnInicio.setFont(new Font("Arial", Font.BOLD, 13));
 		btnInicio.setIcon(new ImageIcon(Buscar.class.getResource("/imageresources/perfil30.png")));
 		btnInicio.setBounds(495, 0, 137, 38);
@@ -129,6 +128,7 @@ public class Buscar extends JFrame {
 				dispose();
 			}
 		});
+
 		btnGalancar.setIcon(new ImageIcon(Buscar.class.getResource("/imageresources/nombreblancosmall220.png")));
 		btnGalancar.setBounds(272, 0, 224, 38);
 		contentPane.add(btnGalancar);
@@ -137,117 +137,115 @@ public class Buscar extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon(Buscar.class.getResource("/imageresources/logosmall75.png")));
 		lblNewLabel.setBounds(557, 395, 75, 58);
 		contentPane.add(lblNewLabel);
-		
+
 		class Item {
 
-			  private int id;
-			  private String description;
+			private int id;
+			private String description;
 
-			  public Item(int id, String description) {
-			    this.id = id;
-			    this.description = description;
-			  }
-
-			  public int getId() {
-			    return id;
-			  }
-
-			  public String getDescription() {
-			    return description;
-			  }
-
-			  @Override
-			  public String toString() {
-			    return description;
-			  }
+			public Item(int id, String description) {
+				this.id = id;
+				this.description = description;
 			}
+
+			public int getId() {
+				return id;
+			}
+
+			public String getDescription() {
+				return description;
+			}
+
+			@Override
+			public String toString() {
+				return description;
+			}
+		}
 		class ItemRenderer extends BasicComboBoxRenderer {
-			  @Override
-			  public Component getListCellRendererComponent(JList list, Object value,
-			      int index, boolean isSelected, boolean cellHasFocus) {
-			    super.getListCellRendererComponent(list, value, index, isSelected,
-			        cellHasFocus);
-			    if (value != null) {
-			      Item item = (Item) value;
-			      setText(item.getDescription().toUpperCase());
-			    }
-			    if (index == -1) {
-			      Item item = (Item) value;
-			      setText("" + item.getId());
-			    }
-			    return this;
-			  }
+			@Override
+			public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
+					boolean cellHasFocus) {
+				super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+				if (value != null) {
+					Item item = (Item) value;
+					setText(item.getDescription().toUpperCase());
+				}
+				if (index == -1) {
+					Item item = (Item) value;
+					setText("" + item.getId());
+				}
+				return this;
 			}
-			
+		}
+
 		JComboBox comboBox = new JComboBox();
 		comboBox.setSize(149, 20);
 		comboBox.setLocation(156, 128);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {}));
 		comboBox.setEditable(true);
 		comboBox.addItem(new Item(1, "Ciudad Real"));
-	    comboBox.addItem(new Item(2, "Puertollano"));
-	    comboBox.addItem(new Item(3, "Tomelloso"));
-	    comboBox.addItem(new Item(4, "Alcazar De San Juan"));
-	    comboBox.addItem(new Item(5, "Valdepeñas"));
-	    comboBox.addItem(new Item(6, "La Solana"));
-	    comboBox.addItem(new Item(7, "Membrilla"));
-	    comboBox.addItem(new Item(8, "San Carlos Del Valle"));
-	    comboBox.addItem(new Item(9, "Daimiel"));
-	    comboBox.addItem(new Item(10, "Miguelturra"));
-	    comboBox.addItem(new Item(11, "Herencia"));
-	    comboBox.addItem(new Item(12, "Alhambra"));
-	    comboBox.addItem(new Item(13, "Almagro"));
-	    comboBox.addItem(new Item(14, "Sotuelamos"));
-	    comboBox.addItem(new Item(15, "Malagon"));
-	    comboBox.addItem(new Item(16, "Pedro Muñoz"));
-	    comboBox.addItem(new Item(17, "Campo de Criptana"));
-	    comboBox.addItem(new Item(18, "Almaden"));
-	    comboBox.addItem(new Item(19, "Pozo De La Serna"));
-	    comboBox.addItem(new Item(20, "Argamasilla De Alba"));
-	    comboBox.setMaximumRowCount(20);
+		comboBox.addItem(new Item(2, "Puertollano"));
+		comboBox.addItem(new Item(3, "Tomelloso"));
+		comboBox.addItem(new Item(4, "Alcazar De San Juan"));
+		comboBox.addItem(new Item(5, "Valdepeñas"));
+		comboBox.addItem(new Item(6, "La Solana"));
+		comboBox.addItem(new Item(7, "Membrilla"));
+		comboBox.addItem(new Item(8, "San Carlos Del Valle"));
+		comboBox.addItem(new Item(9, "Daimiel"));
+		comboBox.addItem(new Item(10, "Miguelturra"));
+		comboBox.addItem(new Item(11, "Herencia"));
+		comboBox.addItem(new Item(12, "Alhambra"));
+		comboBox.addItem(new Item(13, "Almagro"));
+		comboBox.addItem(new Item(14, "Sotuelamos"));
+		comboBox.addItem(new Item(15, "Malagon"));
+		comboBox.addItem(new Item(16, "Pedro Muñoz"));
+		comboBox.addItem(new Item(17, "Campo de Criptana"));
+		comboBox.addItem(new Item(18, "Almaden"));
+		comboBox.addItem(new Item(19, "Pozo De La Serna"));
+		comboBox.addItem(new Item(20, "Argamasilla De Alba"));
+		comboBox.setMaximumRowCount(20);
 		contentPane.add(comboBox);
-	    comboBox.setPrototypeDisplayValue(" None of the above ");
-	    comboBox.addActionListener(e -> {
-	      JComboBox c = (JComboBox) e.getSource();
-	      Item item = (Item) c.getSelectedItem();
-	      System.out.println(item.getId() + " : " + item.getDescription());
-	    });
-		
-	    JComboBox comboBox_1 = new JComboBox();
+		comboBox.setPrototypeDisplayValue(" None of the above ");
+		comboBox.addActionListener(e -> {
+			JComboBox c = (JComboBox) e.getSource();
+			Item item = (Item) c.getSelectedItem();
+			System.out.println(item.getId() + " : " + item.getDescription());
+		});
+
+		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setSize(149, 20);
 		comboBox_1.setLocation(321, 128);
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {}));
 		comboBox_1.setEditable(true);
-	    comboBox_1.addItem(new Item(1, "Ciudad Real"));
-	    comboBox_1.addItem(new Item(2, "Puertollano"));
-	    comboBox_1.addItem(new Item(3, "Tomelloso"));
-	    comboBox_1.addItem(new Item(4, "Alcazar De San Juan"));
-	    comboBox_1.addItem(new Item(5, "Valdepeñas"));
-	    comboBox_1.addItem(new Item(6, "La Solana"));
-	    comboBox_1.addItem(new Item(7, "Membrilla"));
-	    comboBox_1.addItem(new Item(8, "San Carlos Del Valle"));
-	    comboBox_1.addItem(new Item(9, "Daimiel"));
-	    comboBox_1.addItem(new Item(10, "Miguelturra"));
-	    comboBox_1.addItem(new Item(11, "Herencia"));
-	    comboBox_1.addItem(new Item(12, "Alhambra"));
-	    comboBox_1.addItem(new Item(13, "Almagro"));
-	    comboBox_1.addItem(new Item(14, "Sotuelamos"));
-	    comboBox_1.addItem(new Item(15, "Malagon"));
-	    comboBox_1.addItem(new Item(16, "Pedro Muñoz"));
-	    comboBox_1.addItem(new Item(17, "Campo de Criptana"));
-	    comboBox_1.addItem(new Item(18, "Almaden"));
-	    comboBox_1.addItem(new Item(19, "Pozo De La Serna"));
-	    comboBox_1.addItem(new Item(20, "Argamasilla De Alba"));
-	    comboBox_1.setMaximumRowCount(20);
+		comboBox_1.addItem(new Item(1, "Ciudad Real"));
+		comboBox_1.addItem(new Item(2, "Puertollano"));
+		comboBox_1.addItem(new Item(3, "Tomelloso"));
+		comboBox_1.addItem(new Item(4, "Alcazar De San Juan"));
+		comboBox_1.addItem(new Item(5, "Valdepeñas"));
+		comboBox_1.addItem(new Item(6, "La Solana"));
+		comboBox_1.addItem(new Item(7, "Membrilla"));
+		comboBox_1.addItem(new Item(8, "San Carlos Del Valle"));
+		comboBox_1.addItem(new Item(9, "Daimiel"));
+		comboBox_1.addItem(new Item(10, "Miguelturra"));
+		comboBox_1.addItem(new Item(11, "Herencia"));
+		comboBox_1.addItem(new Item(12, "Alhambra"));
+		comboBox_1.addItem(new Item(13, "Almagro"));
+		comboBox_1.addItem(new Item(14, "Sotuelamos"));
+		comboBox_1.addItem(new Item(15, "Malagon"));
+		comboBox_1.addItem(new Item(16, "Pedro Muñoz"));
+		comboBox_1.addItem(new Item(17, "Campo de Criptana"));
+		comboBox_1.addItem(new Item(18, "Almaden"));
+		comboBox_1.addItem(new Item(19, "Pozo De La Serna"));
+		comboBox_1.addItem(new Item(20, "Argamasilla De Alba"));
+		comboBox_1.setMaximumRowCount(20);
 		contentPane.add(comboBox_1);
-	    comboBox_1.setPrototypeDisplayValue(" None of the above ");
-	    comboBox_1.addActionListener(e -> {
-	      JComboBox c = (JComboBox) e.getSource();
-	      Item item = (Item) c.getSelectedItem();
-	      System.out.println(item.getId() + " : " + item.getDescription());
-	    });
-	    System.out.println(dni_user);
-		
+		comboBox_1.setPrototypeDisplayValue(" None of the above ");
+		comboBox_1.addActionListener(e -> {
+			JComboBox c = (JComboBox) e.getSource();
+			Item item = (Item) c.getSelectedItem();
+			System.out.println(item.getId() + " : " + item.getDescription());
+		});
+		System.out.println(dni_user);
 
 		JLabel lblOrigen = new JLabel("Origen");
 		lblOrigen.setFont(new Font("Arial", Font.BOLD, 14));
@@ -264,48 +262,60 @@ public class Buscar extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 
+					int destino1 = ((Item) comboBox_1.getSelectedItem()).getId();
+					int origen1 = ((Item) comboBox.getSelectedItem()).getId();
 
-					// Conectar a BD y enviarla
-					Connection connect = null;
-					Statement query = null;
-					ResultSet resultSet = null;
-					// Driver
-					Class.forName("com.mysql.jdbc.Driver");
-					connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/galancar?user=root&password="
-							+ "&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-					
-					// Construir una query para SQL con los datos del combobox
-					//String consulta = "select id_viaje,dni_conductor,id_origen,id_destino,plazas_disponibles from viajes where id_origen = " 
-					//+ ((Item)comboBox.getSelectedItem()).getId()+" and id_destino= "+((Item)comboBox_1.getSelectedItem()).getId();
-					String consulta = "select id_viaje, dni_conductor, l1.nombre_localidad origen, l2.nombre_localidad destino, plazas_disponibles from viajes " + 
-							" inner join localidad l1 on viajes.id_origen=l1.id_localidad inner join localidad l2 on viajes.id_destino=l2.id_localidad " + 
-							" where id_origen = "+ ((Item)comboBox.getSelectedItem()).getId()+" and id_destino= "+((Item)comboBox_1.getSelectedItem()).getId();
-					//JOptionPane.showMessageDialog(null, consulta); //solo para probar
-					query = connect.createStatement();
-					ResultSet resultado = query.executeQuery(consulta);
-					// Tratar el resultSet para meterlo en la tabla
-					int i = 0;
-					while (resultado.next()) {
-						int id_viaje = resultado.getInt("id_viaje");
-						table.setValueAt(id_viaje, i, 0);
+					// VALIDADOR DE DESTINO
+					if (origen1 != destino1) {
+						// Conectar a BD y enviarla
+						Connection connect = null;
+						Statement query = null;
+						ResultSet resultSet = null;
+						// Driver
+						Class.forName("com.mysql.jdbc.Driver");
+						connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/galancar?user=root&password="
+								+ "&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
 
-						String dni_conductor = resultado.getString("dni_conductor");
-						table.setValueAt(dni_conductor, i, 1);
+						// Construir una query para SQL con los datos del combobox
+						// String consulta = "select
+						// id_viaje,dni_conductor,id_origen,id_destino,plazas_disponibles from viajes
+						// where id_origen = "
+						// + ((Item)comboBox.getSelectedItem()).getId()+" and id_destino=
+						// "+((Item)comboBox_1.getSelectedItem()).getId();
+						String consulta = "select id_viaje, dni_conductor, l1.nombre_localidad origen, l2.nombre_localidad destino, plazas_disponibles from viajes "
+								+ " inner join localidad l1 on viajes.id_origen=l1.id_localidad inner join localidad l2 on viajes.id_destino=l2.id_localidad "
+								+ " where id_origen = " + origen1 + " and id_destino= " + destino1;
 
-						String origen = resultado.getString("origen");
-						table.setValueAt(origen, i, 2);
+						// JOptionPane.showMessageDialog(null, consulta); //solo para probar
+						query = connect.createStatement();
+						ResultSet resultado = query.executeQuery(consulta);
 
-						String destino = resultado.getString("destino");
-						table.setValueAt(destino, i, 3);
-						
-						int plazas_disponibles = resultado.getInt("plazas_disponibles");
-						table.setValueAt(plazas_disponibles, i, 4);
+						// Tratar el resultSet para meterlo en la tabla
+						int i = 0;
 
-						i++;
+						while (resultado.next()) {
+							int id_viaje = resultado.getInt("id_viaje");
+							table.setValueAt(id_viaje, i, 0);
+
+							String dni_conductor = resultado.getString("dni_conductor");
+							table.setValueAt(dni_conductor, i, 1);
+							dni_validar = dni_conductor;
+
+							String origen = resultado.getString("origen");
+							table.setValueAt(origen, i, 2);
+
+							String destino = resultado.getString("destino");
+							table.setValueAt(destino, i, 3);
+
+							int plazas_disponibles = resultado.getInt("plazas_disponibles");
+							table.setValueAt(plazas_disponibles, i, 4);
+							plazas_libres = plazas_disponibles;
+							i++;
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "Destino inválido", "Error", JOptionPane.ERROR_MESSAGE);
 					}
-				}
-
-				catch (Exception e) {
+				} catch (Exception e) {
 
 				}
 			}
@@ -346,49 +356,46 @@ public class Buscar extends JFrame {
 		btnUnirse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// FUNCIÓN DEL BOTÓN UNIRSE
-				
+
 				Home home = new Home(dni_user);
 				home.setVisible(true);
 				Buscar buscar = new Buscar(dni_user);
 				buscar.setVisible(false);
 				dispose();
 				try {
+					// VALIDAROD DE PLAZAS LIBRES Y DNI
+					if (plazas_libres < 0 || dni_user.equals(dni_validar)) {
+						JOptionPane.showMessageDialog(null,
+								"No hay plazas en este buga o el viaje lo has creado tú mismo", "Error",
+								JOptionPane.ERROR_MESSAGE);
+					} else {
+						// Conectar a BD y enviarla
+						Connection connect = null;
+						PreparedStatement query = null;
+						ResultSet resultSet = null;
+						// Driver
+						Class.forName("com.mysql.jdbc.Driver");
+						connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/galancar?user=root&password="
+								+ "&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
 
+						// Construir una query para SQL con los datos del combobox
+						String consulta = "insert into galancar.pasajero_viaje (id_viaje, dni_pasajero) " + "values("
+								+ textFieldBuscar.getText() + ",'" + dni_user + "')";
+						System.out.println(textFieldBuscar.getText());
+						// JOptionPane.showMessageDialog(null, consult); //solo para probar
+						query = connect.prepareStatement(consulta);
+						int resultado = query.executeUpdate(consulta);
 
-					// Conectar a BD y enviarla
-					Connection connect = null;
-					PreparedStatement query = null;
-					ResultSet resultSet = null;
-					// Driver
-					Class.forName("com.mysql.jdbc.Driver");
-					connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/galancar?user=root&password="
-							+ "&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-					
-					// Construir una query para SQL con los datos del combobox
-					String consulta = "insert into galancar.pasajero_viaje (id_viaje, dni_pasajero) " +
-	        				"values("+textFieldBuscar.getText()+",'"+dni_user+"')";
-					System.out.println(textFieldBuscar.getText());
-					//JOptionPane.showMessageDialog(null, consult); //solo para probar
-					query = connect.prepareStatement(consulta);
-					int resultado = query.executeUpdate(consulta);
-					
-					// Tratar el resultSet para meterlo en la tabla
-					int i = 0;
-					
-				}
-
-				catch (Exception e1) {
+						// Tratar el resultSet para meterlo en la tabla
+						int i = 0;
+					}
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				
-
 			}
 		});
 		btnUnirse.setFont(new Font("Arial", Font.BOLD, 14));
 		btnUnirse.setBounds(255, 401, 97, 25);
 		contentPane.add(btnUnirse);
-		
-		
-
 	}
 }

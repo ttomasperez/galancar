@@ -31,9 +31,7 @@ public class Home extends JFrame {
 	private String dni_usuario;
 	private String dni_user;
 
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -47,14 +45,10 @@ public class Home extends JFrame {
 		});
 	}
 	
-
-
-	/**
-	 * Create the frame.
-	 */
 	public Home(String dni_user) {
+		super("Sesión Iniciada por el usuario: "+dni_user);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(300, 300, 650, 500);
+		setBounds(500, 200, 650, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -69,11 +63,11 @@ public class Home extends JFrame {
 				dispose();
 			}
 		});
+		
 		btnPublicar.setIcon(new ImageIcon(Home.class.getResource("/imageresources/buscar35.png")));
 		btnPublicar.setFont(new Font("Arial", Font.BOLD, 14));
 		btnPublicar.setBounds(0, 0, 137, 38);
 		contentPane.add(btnPublicar);
-		
 		
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
@@ -84,6 +78,7 @@ public class Home extends JFrame {
 				dispose();
 			}
 		});
+		
 		btnBuscar.setIcon(new ImageIcon(Home.class.getResource("/imageresources/lupa30.png")));
 		btnBuscar.setFont(new Font("Arial", Font.BOLD, 13));
 		btnBuscar.setBounds(131, 0, 137, 38);
@@ -98,6 +93,7 @@ public class Home extends JFrame {
 				dispose();
 			}
 		});
+		
 		btnInicio.setFont(new Font("Arial", Font.BOLD, 13));
 		btnInicio.setIcon(new ImageIcon(Home.class.getResource("/imageresources/perfil30.png")));
 		btnInicio.setBounds(495, 0, 137, 38);
@@ -112,6 +108,7 @@ public class Home extends JFrame {
 				dispose();
 			}
 		});
+		
 		btnGalancar.setIcon(new ImageIcon(Home.class.getResource("/imageresources/logosmall60.png")));
 		btnGalancar.setBounds(266, 0, 230, 38);
 		contentPane.add(btnGalancar);

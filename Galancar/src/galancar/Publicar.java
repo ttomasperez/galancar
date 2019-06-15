@@ -33,9 +33,7 @@ public class Publicar extends JFrame {
 	// BOTON Y CONTENEDOR
 	JButton btnAdelante, btnPublicar, btnBuscar, btnInicio, btnGalancar;
 	Container c;
-
 	JPanel contentPane;
-
 	handler handle;
 	JComboBox c_origen = new JComboBox();
 	JComboBox c_destino = new JComboBox();
@@ -43,18 +41,16 @@ public class Publicar extends JFrame {
 
 	JTextField t_plazas;
 	String dni_user;
-	
+
 	// CONSTRUCTOR
 	Publicar(String dni_user) {
-		
-		
-	
-		
+
 		// NOMBRE DE LA VENTANA
-		this.dni_user=dni_user;
+		super("Sesión Iniciada por el usuario: " + dni_user);
+		this.dni_user = dni_user;
+
 		// CONTAINER
 		c = getContentPane();
-
 		db = new ConnectorBBDD();
 		handle = new handler();
 
@@ -63,7 +59,7 @@ public class Publicar extends JFrame {
 		btnAdelante.setBounds(237, 209, 158, 25);
 		btnAdelante.addActionListener(handle);
 		getContentPane().setLayout(null);
-		
+
 		btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -73,29 +69,27 @@ public class Publicar extends JFrame {
 				dispose();
 			}
 		});
-		
+
 		btnPublicar = new JButton("Publicar");
 		btnPublicar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// FUNCIÓN DEL BOTÓN PUBLICAR
 				Publicar publicar = new Publicar(dni_user);
 				publicar.setVisible(true);
-				dispose();		
+				dispose();
 			}
 		});
-		
+
 		btnPublicar.setIcon(new ImageIcon(Publicar.class.getResource("/imageresources/buscar35.png")));
 		btnPublicar.setFont(new Font("Arial", Font.BOLD, 14));
 		btnPublicar.setBounds(0, 0, 137, 38);
 		getContentPane().add(btnPublicar);
-		
-		
+
 		btnBuscar.setIcon(new ImageIcon(Publicar.class.getResource("/imageresources/lupa30.png")));
 		btnBuscar.setFont(new Font("Arial", Font.BOLD, 13));
 		btnBuscar.setBounds(137, 0, 137, 38);
 		getContentPane().setLayout(null);
-		
-		
+
 		btnInicio = new JButton("Perfil");
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -103,14 +97,15 @@ public class Publicar extends JFrame {
 				Perfil perfil = new Perfil(dni_user);
 				perfil.setVisible(true);
 				dispose();
-				
+
 			}
 		});
+
 		btnInicio.setFont(new Font("Arial", Font.BOLD, 13));
 		btnInicio.setIcon(new ImageIcon(Publicar.class.getResource("/imageresources/perfil30.png")));
 		btnInicio.setBounds(495, 0, 137, 38);
 		getContentPane().add(btnInicio);
-		
+
 		btnGalancar = new JButton("");
 		btnGalancar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -120,11 +115,10 @@ public class Publicar extends JFrame {
 				dispose();
 			}
 		});
+
 		btnGalancar.setIcon(new ImageIcon(Publicar.class.getResource("/imageresources/nombreblancosmall220.png")));
 		btnGalancar.setBounds(272, 0, 224, 38);
 		getContentPane().add(btnGalancar);
-		
-		
 
 		c.add(btnAdelante);
 		c.add(btnBuscar);
@@ -132,7 +126,6 @@ public class Publicar extends JFrame {
 		c.add(btnInicio);
 		c.add(btnPublicar);
 
-		
 		JLabel label_1 = new JLabel("");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		label_1.setIcon(new ImageIcon(Publicar.class.getResource("/imageresources/logosmall75.png")));
@@ -147,30 +140,28 @@ public class Publicar extends JFrame {
 
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(300, 300, 650, 500);
-		
+		setBounds(500, 200, 650, 500);
+
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Publicar.class.getResource("/imageresources/consultoria-integral.png")));
 		lblNewLabel.setBounds(208, 242, 224, 211);
 		getContentPane().add(lblNewLabel);
-		
-		
+
 		JLabel lbldesdeDndeViajas = new JLabel("\u00BFDESDE D\u00D3NDE VIAJAS?");
 		lbldesdeDndeViajas.setFont(new Font("Arial", Font.BOLD, 14));
 		lbldesdeDndeViajas.setBounds(138, 86, 171, 16);
 		getContentPane().add(lbldesdeDndeViajas);
-		
+
 		JLabel lblhaciaDndeViajas = new JLabel("\u00BFHACIA D\u00D3NDE VIAJAS?");
 		lblhaciaDndeViajas.setFont(new Font("Arial", Font.BOLD, 14));
 		lblhaciaDndeViajas.setBounds(321, 86, 171, 16);
 		getContentPane().add(lblhaciaDndeViajas);
-		
+
 		JLabel lblcuntasPlazasLibres = new JLabel("\u00BFCU\u00C1NTAS PLAZAS LIBRES TIENES?");
 		lblcuntasPlazasLibres.setHorizontalAlignment(SwingConstants.CENTER);
 		lblcuntasPlazasLibres.setFont(new Font("Arial", Font.BOLD, 14));
 		lblcuntasPlazasLibres.setBounds(170, 155, 300, 16);
 		getContentPane().add(lblcuntasPlazasLibres);
-		
 
 		// CLASE ITEMRENDERER
 		class ItemRenderer extends BasicComboBoxRenderer {
@@ -258,8 +249,6 @@ public class Publicar extends JFrame {
 			Item item = (Item) c.getSelectedItem();
 			System.out.println(item.getId());
 		});// FIN COMBOBOX DESTINO
-		
-
 
 	}// FIN CONSTRUCTOR
 		// CLASE ITEM
@@ -297,29 +286,33 @@ public class Publicar extends JFrame {
 				System.out.println();
 				// PASO EL TEXTFIELD A INT
 				int plazas = Integer.parseInt(t_plazas.getText());
-				
+
 				// COMPRUEBO CON CHECKLOGIN, LO CUÁL ME DARÁ UN VALOR BOOLEAN. EN CASO DE SER
 				// VERDADERO LE DIGO QUE MUESTRE INICIO
 				// AL ESTAR DENTRO DE LA CONDICIÓN IF, NO LE PONGO == TRUE POR QUE SE OBVIA
 
-				if (db.checkPublicar(dni_user, ((Item) c_origen.getSelectedItem()).getId(),
-						((Item) c_destino.getSelectedItem()).getId(), plazas)) {
+				int origen = ((Item) c_origen.getSelectedItem()).getId();
+				int destino = ((Item) c_destino.getSelectedItem()).getId();
 
-					JOptionPane.showMessageDialog(null, "Viaje insertado con éxito");
-				}
-				// SI NO ES IGUAL, MUESTRO UN JOPTIONPANE QUE ME ADVIERTA DE QUE ALGO ESTOY
-				// HACIENDO MAL
-				else {
-					JOptionPane.showMessageDialog(null, "Error al validar", "Error", JOptionPane.ERROR_MESSAGE);
+				if (origen != destino) {
+					if (plazas > 0) {
+						if (db.checkPublicar(dni_user, origen, destino, plazas)) {
+
+							JOptionPane.showMessageDialog(null, "Viaje insertado con éxito");
+						}
+						// SI NO ES IGUAL, MUESTRO UN JOPTIONPANE QUE ME ADVIERTA DE QUE ALGO ESTOY
+						// HACIENDO MAL
+						else {
+							JOptionPane.showMessageDialog(null, "Error al validar", "Error", JOptionPane.ERROR_MESSAGE);
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "Para publicar un viaje necesitas alguna plaza libre",
+								"Error", JOptionPane.ERROR_MESSAGE);
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Destino inválido", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
-
 		}
-
 	}
-
-	// LE DIGO QUE ME EJECUTE EL REGISTRO
-	/*public static void main(String args[]) {
-		Publicar sample = new Publicar("");
-	}*/
 }
