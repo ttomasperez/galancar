@@ -1,9 +1,0 @@
-insert into usuario values('56987412','Felipe','Parra','1234','1980-12-24','Ciudad Real','La Solana',600256314,'felipe@correo.com');
-insert into usuario values('89502364','Maria','Rodriguez','1234','1970-01-14','Ciudad Real','Campo de Criptana',690665887,'maria@correo.com');
-insert into usuario values('24156089','Manuela','Mateos','1234','1987-06-02','Ciudad Real','Puertollano',665231487,'ana@correo.com');
-insert into usuario values('52105987','Valentin','Reinoso','1234','1978-11-22','Ciudad Real','Almadén',625874123,'valentin@correo.com');
-insert into usuario values('45014897','Tomas','Manzanares','1234','1996-02-28','Ciudad Real','Argamasilla de Alba',600111222,'tomas@correo.com');
-insert into usuario values('12564789','Lucia','Garcia','1234','1980-09-20','Ciudad Real','Malagon',630259874,'lucia@correo.com');
-insert into usuario values('36958247','Julian','Mondejar','1234','1989-11-15','Ciudad Real','Pedro Muñoz',634789021,'julian@correo.com');
-insert into usuario values('77088495','Alba','Peinado','1234','1991-01-09','Ciudad Real','Alhambra',644225997,'alba@correo.com');
-insert into usuario values('87415780','Jesus','Almarcha','1234','1984-07-24','Ciudad Real','Herencia',696841256,'jesus@correo.com');
