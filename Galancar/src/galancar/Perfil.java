@@ -27,6 +27,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
+import java.net.URI;
 import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -45,15 +46,12 @@ public class Perfil extends JFrame {
 	ResultSet rs4;
 	handler handle;
 
-	JTextField t_nombre, t_dni, t_nacimiento, t_provincia, t_apellidos, t_localidad, t_contrasena, t_movil, t_email;
-	private JLabel lblPron;
-	private JLabel lblProvincia;
-	private JLabel lblLocalidad;
-	private JLabel lblMovil;
-	private JLabel lblEmail;
-	private JPasswordField psw1;
-	private JPasswordField psw2;
+	private JTextField t_nombre, t_dni, t_nacimiento, t_provincia, t_apellidos, t_localidad, t_contrasena, t_movil, t_email;
+	private JLabel lblPron, lblEmail, lblMovil, lblLocalidad, lblProvincia;
+	private JPasswordField psw1, psw2;
 
+	
+	
 	// CONSTRUCTOR
 	Perfil(String dni_user) {
 
